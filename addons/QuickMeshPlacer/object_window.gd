@@ -3,49 +3,44 @@ extends Control
 
 
 var lbl_txt=ProbuilderVars.label_text
+var names=["Cube","Sphere","Capsule","Cylinder","Plane","Circle"]
 func _process(delta):
 
-	$VBoxContainer/Label.text = ProbuilderVars.label_text
+	$VBoxContainer/Label.text = lbl_txt
 	$VBoxContainer/Mode.text = "Mode: %d | index: %d " % [ProbuilderVars.mode, ProbuilderVars.selected_index] 
-	
-	
-func _on_button_pressed():
+
+	$VBoxContainer/Label2.text= "Current Object:  %s " % names[ProbuilderVars.selected_index]
+
+func _on_cube_btn_pressed():
 	lbl_txt="Cube"
 	ProbuilderVars.selected_index=0
-	print("hi")
+	
 
-
-func _on_button_2_pressed():
+func _on_sphere_btn_pressed():
 	lbl_txt="Sphere"
-
 	ProbuilderVars.selected_index=1
-	print("hi2")
 
 
-func _on_button_3_pressed():
+func _on_capsule_btn_pressed():
 	lbl_txt="Capsule"
-
 	ProbuilderVars.selected_index=2
-	print("hi23")
 
 
-func _on_button_4_pressed():
-	lbl_txt="KMS"
+func _on_cylinder_btn_pressed():
+	lbl_txt="Cylinder"
 	ProbuilderVars.selected_index=3
-	print("UwU")
-
-func _on_button_5_pressed():
-	
-	ProbuilderVars.mode=0	
-	pass # Replace with function body.
-
-#save the scene
-func _on_button_6_pressed():
-	var packed_scene = PackedScene.new()
-	packed_scene.pack(get_tree().current_scene)
-	ResourceSaver.save( packed_scene,"res://Test.tscn",ResourceSaver.FLAG_NONE)
-	
 
 
-func _on_button_7_pressed():
-	ProbuilderVars.goto_scene("res://Probuilder.tscn")
+func _on_plane_btn_pressed():
+	lbl_txt="Plane"
+	ProbuilderVars.selected_index=4
+
+
+func _on_circle_btn_pressed():
+	lbl_txt="Circle"
+	ProbuilderVars.selected_index=5
+
+
+func _on_reset_values_btn_pressed():
+	ProbuilderVars.mode=0
+	ProbuilderVars.selected_index=0

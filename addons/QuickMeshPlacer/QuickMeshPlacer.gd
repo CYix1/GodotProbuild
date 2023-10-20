@@ -23,15 +23,46 @@ func _exit_tree():
 func _handles(object):
 	return true
 	
-
+var firstEvent=null
+var secondEvent=null
+var collisionParent=null
 #GET THE FUCKING MOUSEPOSITION GOD DAMMIT
 func _forward_3d_gui_input(camera, event):
+	
 	if event is InputEventMouseMotion:
 		set_mouse_position(camera,event.position)	
 	if event is InputEventMouseButton and event.pressed and event.button_index== 1:
 		customRayCast(camera,event.position,event )
+	if event is InputEventMouseButton and event.is_pressed():
+		if firstEvent == null:
+			firstEvent=event
+			ProbuilderVars.instantiated_obj=ProbuilderVars.objs[ProbuilderVars.selected_index].instantiate()
+			var Owner=collisionParent.get_node("Level").get_parent().get_parent()
+			Owner.add_child(ProbuilderVars.instantiated_obj)
+			
+			#code to set instantiated obj as persistent
+			ProbuilderVars.instantiated_obj.owner=Owner
+			ProbuilderVars.instantiated_obj.set_owner(Owner)
+			
+			
+			ProbuilderVars.firstPos=colPos
+			#little thing
+			colPos.y=0
+			ProbuilderVars.instantiated_obj.position=colPos
+			print("first click")
+		elif secondEvent == null  and firstEvent:
+			secondEvent=event
+			print("second click")
+		elif firstEvent and secondEvent:
+			firstEvent = null
+			secondEvent= null
+			print("reset")
+	if firstEvent and secondEvent==null and event is InputEventMouseMotion:
+		var scalingfactor=(event.position-firstEvent.position).length()
+		print(scalingfactor)
+		ProbuilderVars.instantiated_obj.scale=Vector3(scalingfactor,scalingfactor,scalingfactor)
+			
 	
-
 #set 2d/3D mouse position
 func set_mouse_position(camera,pos):
 	ProbuilderVars.mouse_position= pos
@@ -40,56 +71,45 @@ func set_mouse_position(camera,pos):
 #Raycasting from camera to mouse 3d Position!
 func customRayCast(camera :Camera3D, pos:Vector2,event ):
 	ProbuilderVars.mouse_position= pos
-
+	
+	#Raycast specific things
 	var space = camera.get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(camera.global_position,
 			 ProbuilderVars.position_3D)
 	query.collide_with_areas=true
 	var collision = space.intersect_ray(query)
 	
-	if collision:
-		#objs_window_script.text= collision.collider.name
+	if collision: # RaycastHit
 		ProbuilderVars.label_text=collision.collider.name
+		#Call next method
 		if collision.collider.name == "Ground":
-			handleinput(collision.position,collision.collider,event)
+			collisionParent=collision.collider
+			#handleinput(collision.position,collision.collider,event)
 		
-		#get_tree().get_edited_scene_root().add_child(objs[selected_index].instantiate())
-	else:
-		
+	else:# no RaycastHit
 		ProbuilderVars.label_text="no raycasthit!"
 		pass
+
+var scaling=false
 
 #ok what should happen if raycast hitted and do stuff?
 #the main tool functionality!
 func handleinput(colPos: Vector3,collisionParent: Node3D,event):
-	var LevelNode = collisionParent.get_node("Level")
-	
-	printChildNodeNames(LevelNode)
-		
+	#var LevelNode = collisionParent.get_node("Level")		
 	#printChildNodeNames(get_child_count())
-	
-	if  ProbuilderVars.mode==0:
-		
-		#instantiate the selected object and set the owner
-		ProbuilderVars.instantiated_obj=load("res://Prefabs/Cube.tscn").instantiate()
-		var Owner=collisionParent.get_node("Level").get_parent().get_parent()
-		Owner.add_child(ProbuilderVars.instantiated_obj)
-		
-		ProbuilderVars.instantiated_obj.owner=Owner
-		ProbuilderVars.instantiated_obj.set_owner(Owner)
-		Owner.get_tree().reload_current_scene()
-		ProbuilderVars.mode=1
-		ProbuilderVars.firstPos=colPos
-		ProbuilderVars.instantiated_obj.position=colPos
-		
-	elif  ProbuilderVars.mode==1:
-		ProbuilderVars.mode=2 
-		ProbuilderVars.secondPos=colPos
-		ProbuilderVars.instantiated_obj.scale=Vector3.ONE
-	elif  ProbuilderVars.mode==2:
 
-		#label_text="created Object %d" %[mode]
-		ProbuilderVars.mode=3
+	if event is InputEventMouseButton:
+		if event.button_index == 1:
+			if event.is_pressed():
+				# When left mouse button is pressed, set the object's position to the mouse position.
+				
+				# Enable scaling while holding left mouse button
+				scaling = true
+				
+			else:
+				ProbuilderVars.secondPos=colPos
+				# When left mouse button is released, disable scaling
+				scaling = false
 	
 
 #recursive function to print the fucking tree

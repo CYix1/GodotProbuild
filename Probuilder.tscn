@@ -1,28 +1,54 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu2enw0aawph3"]
+[gd_scene load_steps=7 format=3 uid="uid://bu2enw0aawph3"]
 
 [ext_resource type="Script" path="res://Locker.gd" id="1_bshdc"]
+[ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_8q5ka"]
 [ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="2_x3wmu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
 size = Vector3(2, 0.1, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn6vt"]
+albedo_texture = ExtResource("2_8q5ka")
+uv1_scale = Vector3(100, 100, 100)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_rkp4h"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_bshdc")
-metadata/_edit_group_ = true
 
 [node name="Ground" type="Area3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
 script = ExtResource("1_bshdc")
+predefined_position = Vector3(0, -0.5, 0)
+predefined_scale = Vector3(100, 1, 100)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_hlp4v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_dn6vt")
 mesh = SubResource("PlaneMesh_rkp4h")
 
 [node name="Level" type="Node" parent="Ground"]
 
 [node name="Cube" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26983, -0.273502, -0.673346)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7131, 0, -46.8265)
+
+[node name="@Area3D@190263" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0787, 0, -46.5494)
+
+[node name="@Area3D@191236" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(2.23607, 0, 0, 0, 2.23607, 0, 0, 0, 2.23607, 8.97099, 0, -50.2516)
+
+[node name="@Area3D@192437" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(5.09902, 0, 0, 0, 5.09902, 0, 0, 0, 5.09902, -2.71797, 0, -46.1995)
+
+[node name="@Area3D@194286" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.51249, 0, -42.2833)
+
+[node name="@Area3D@196923" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 12.0301, 0, -41.4737)
+
+[node name="@Area3D@198124" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97548, 0, -32.0305)

@@ -1,8 +1,8 @@
 @tool
 extends Node
+
+#TODO FIX THIS SHIT. u don't need evetyhing!
 var label_text="Moment"
-
-
 var firstPos=Vector3.ZERO
 var secondPos=Vector3.ZERO
 var thirdPos=Vector3.ZERO
@@ -10,9 +10,15 @@ var thirdPos=Vector3.ZERO
 var instantiated_obj=null
 
 var mouse_position = Vector2()
-var z_depth=40
+var z_depth=1000
 var position_3D= Vector3()
-var objs=[preload("res://Prefabs/Cube.tscn"),preload("res://Prefabs/Sphere.tscn"),preload("res://Prefabs/Capsule.tscn")]
+var objs=[preload("res://Prefabs/Cube.tscn"),
+preload("res://Prefabs/Sphere.tscn"),
+preload("res://Prefabs/Capsule.tscn"),
+preload("res://Prefabs/Cylinder.tscn"),
+preload("res://Prefabs/Plane.tscn"),
+preload("res://Prefabs/Circle.tscn"),
+]
 var selected_index=0
 var mode = 0
 
@@ -24,6 +30,7 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	selected_index=0
 	mode=0
+
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
 	# or some other function in the current scene.
