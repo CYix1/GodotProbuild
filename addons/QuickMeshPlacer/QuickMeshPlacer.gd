@@ -22,18 +22,26 @@ func _exit_tree():
 #need to return true, so _forward_3d_gui_input is called!
 func _handles(object):
 	return true
-	
+			
 var firstEvent=null
 var secondEvent=null
 var collisionParent=null
+var collisionPosition=null
+
 #GET THE FUCKING MOUSEPOSITION GOD DAMMIT
 func _forward_3d_gui_input(camera, event):
-	
+	if ProbuilderVars.block:
+			return
 	if event is InputEventMouseMotion:
+		
 		set_mouse_position(camera,event.position)	
 	if event is InputEventMouseButton and event.pressed and event.button_index== 1:
+		
 		customRayCast(camera,event.position,event )
-	if event is InputEventMouseButton and event.is_pressed():
+		
+	
+	if event is InputEventMouseButton and event.pressed and event.button_index==1:
+	
 		if firstEvent == null:
 			firstEvent=event
 			ProbuilderVars.instantiated_obj=ProbuilderVars.objs[ProbuilderVars.selected_index].instantiate()
@@ -43,24 +51,24 @@ func _forward_3d_gui_input(camera, event):
 			#code to set instantiated obj as persistent
 			ProbuilderVars.instantiated_obj.owner=Owner
 			ProbuilderVars.instantiated_obj.set_owner(Owner)
-			
-			
-			ProbuilderVars.firstPos=colPos
+		
+		
 			#little thing
-			colPos.y=0
-			ProbuilderVars.instantiated_obj.position=colPos
+			collisionPosition.y=1
+			ProbuilderVars.instantiated_obj.position=collisionPosition
 			print("first click")
 		elif secondEvent == null  and firstEvent:
 			secondEvent=event
-			print("second click")
-		elif firstEvent and secondEvent:
 			firstEvent = null
 			secondEvent= null
-			print("reset")
+			print("second click")
 	if firstEvent and secondEvent==null and event is InputEventMouseMotion:
-		var scalingfactor=(event.position-firstEvent.position).length()
-		print(scalingfactor)
-		ProbuilderVars.instantiated_obj.scale=Vector3(scalingfactor,scalingfactor,scalingfactor)
+
+		var scalingfactor=(event.position-firstEvent.position).length()*ProbuilderVars.scaling_factor_factor
+		if (event.position-firstEvent.position).length()*ProbuilderVars.scaling_factor_factor<0.2:
+			ProbuilderVars.instantiated_obj.scale=Vector3(0.2,0.2,0.2)
+		else:
+			ProbuilderVars.instantiated_obj.scale=Vector3(scalingfactor,scalingfactor,scalingfactor)
 			
 	
 #set 2d/3D mouse position
@@ -84,32 +92,14 @@ func customRayCast(camera :Camera3D, pos:Vector2,event ):
 		#Call next method
 		if collision.collider.name == "Ground":
 			collisionParent=collision.collider
-			#handleinput(collision.position,collision.collider,event)
-		
+			collisionPosition=collision.position
+			
 	else:# no RaycastHit
 		ProbuilderVars.label_text="no raycasthit!"
 		pass
 
-var scaling=false
 
-#ok what should happen if raycast hitted and do stuff?
-#the main tool functionality!
-func handleinput(colPos: Vector3,collisionParent: Node3D,event):
-	#var LevelNode = collisionParent.get_node("Level")		
-	#printChildNodeNames(get_child_count())
 
-	if event is InputEventMouseButton:
-		if event.button_index == 1:
-			if event.is_pressed():
-				# When left mouse button is pressed, set the object's position to the mouse position.
-				
-				# Enable scaling while holding left mouse button
-				scaling = true
-				
-			else:
-				ProbuilderVars.secondPos=colPos
-				# When left mouse button is released, disable scaling
-				scaling = false
 	
 
 #recursive function to print the fucking tree

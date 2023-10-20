@@ -3,18 +3,15 @@ extends Control
 
 
 var lbl_txt=ProbuilderVars.label_text
-var names=["Cube","Sphere","Capsule","Cylinder","Plane","Circle"]
+
 func _process(delta):
-
 	$VBoxContainer/Label.text = lbl_txt
-	$VBoxContainer/Mode.text = "Mode: %d | index: %d " % [ProbuilderVars.mode, ProbuilderVars.selected_index] 
-
-	$VBoxContainer/Label2.text= "Current Object:  %s " % names[ProbuilderVars.selected_index]
-
-func _on_cube_btn_pressed():
-	lbl_txt="Cube"
-	ProbuilderVars.selected_index=0
+	$VBoxContainer/Mode.text = "Index: %d " % [ ProbuilderVars.selected_index] 
+	$VBoxContainer/Label2.text= "Current Object:  %s " % ProbuilderVars.objs[ProbuilderVars.selected_index].resource_name
 	
+func _on_cube_btn_pressed():
+	ProbuilderVars.selected_index=0
+	ProbuilderVars.objs[ProbuilderVars.selected_index].resource_name
 
 func _on_sphere_btn_pressed():
 	lbl_txt="Sphere"
@@ -44,3 +41,13 @@ func _on_circle_btn_pressed():
 func _on_reset_values_btn_pressed():
 	ProbuilderVars.mode=0
 	ProbuilderVars.selected_index=0
+
+
+func _on_h_slider_value_changed(value):
+	$VBoxContainer/Label3.text=str(value)
+	ProbuilderVars.scaling_factor_factor=value
+
+
+func _on_check_box_pressed():
+	ProbuilderVars.block=!ProbuilderVars.block
+	print(ProbuilderVars.block)

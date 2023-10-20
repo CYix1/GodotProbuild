@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu2enw0aawph3"]
+[gd_scene load_steps=9 format=3 uid="uid://bu2enw0aawph3"]
 
 [ext_resource type="Script" path="res://Locker.gd" id="1_bshdc"]
 [ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_8q5ka"]
-[ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="2_x3wmu"]
+[ext_resource type="PackedScene" uid="uid://dpejuau4yo7r1" path="res://Prefabs/Circle.tscn" id="4_2ecy7"]
+[ext_resource type="PackedScene" uid="uid://cqxvikhm7kksk" path="res://Prefabs/Sphere.tscn" id="4_a8uo6"]
+[ext_resource type="PackedScene" uid="uid://c32pdv3ujpngh" path="res://Prefabs/Plane.tscn" id="5_unwpv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
 size = Vector3(2, 0.1, 2)
@@ -32,23 +34,44 @@ mesh = SubResource("PlaneMesh_rkp4h")
 
 [node name="Level" type="Node" parent="Ground"]
 
-[node name="Cube" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7131, 0, -46.8265)
+[node name="Sphere" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(13.8311, 0, 0, 0, 13.8311, 0, 0, 0, 13.8311, -32.5151, -13.1742, 0.939923)
 
-[node name="@Area3D@190263" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0787, 0, -46.5494)
+[node name="@Area3D@95302" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(7.97621, 0, 0, 0, 7.97621, 0, 0, 0, 7.97621, -56.5777, 14.2883, 5.4535)
 
-[node name="@Area3D@191236" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(2.23607, 0, 0, 0, 2.23607, 0, 0, 0, 2.23607, 8.97099, 0, -50.2516)
+[node name="@Area3D@95303" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(18.3698, 0, 0, 0, 18.3698, 0, 0, 0, 18.3698, -1.46975, -13.6171, 19.8393)
 
-[node name="@Area3D@192437" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(5.09902, 0, 0, 0, 5.09902, 0, 0, 0, 5.09902, -2.71797, 0, -46.1995)
+[node name="@Area3D@95308" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(45.2159, 0, 0, 0, 45.2159, 0, 0, 0, 45.2159, -55.0126, 1, -57.0888)
 
-[node name="@Area3D@194286" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.51249, 0, -42.2833)
+[node name="@Area3D@95465" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(36.3324, 0, 0, 0, 36.3324, 0, 0, 0, 36.3324, 10.2336, -9.16687, 18.5069)
 
-[node name="@Area3D@196923" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 12.0301, 0, -41.4737)
+[node name="@Area3D@95472" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(12.6194, 0, 0, 0, 12.6194, 0, 0, 0, 12.6194, -36.7539, 7.64415, 13.0267)
 
-[node name="@Area3D@198124" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97548, 0, -32.0305)
+[node name="@Area3D@97370" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(5.7, 0, 0, 0, 5.7, 0, 0, 0, 5.7, -74.3794, 12.2212, -7.02364)
+
+[node name="@Area3D@97371" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(14.5003, 0, 0, 0, 14.5003, 0, 0, 0, 14.5003, -24.0303, 6.31532, 19.9618)
+
+[node name="@Area3D@97372" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(1.20416, 0, 0, 0, 1.20416, 0, 0, 0, 1.20416, -40.3807, 16.7983, 17.2505)
+
+[node name="@Area3D@97379" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(16.1409, 0, 0, 0, 16.1409, 0, 0, 0, 16.1409, -22.3567, -23.0666, 0.236554)
+
+[node name="@Area3D@97690" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(22.1939, 0, 0, 0, 22.1939, 0, 0, 0, 22.1939, 4.10605, -19.6707, 19.0125)
+
+[node name="@Area3D@97691" parent="." instance=ExtResource("4_a8uo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.0794, 8.97297, -5.42009)
+
+[node name="@Area3D@38162" type="Area3D" parent="." instance=ExtResource("4_2ecy7")]
+transform = Transform3D(27.2947, 0, 0, 0, 27.2947, 0, 0, 0, 27.2947, -13.4344, 1, -16.6203)
+
+[node name="Plane" type="Area3D" parent="." instance=ExtResource("5_unwpv")]
+transform = Transform3D(8.60233, 0, 0, 0, 8.60233, 0, 0, 0, 8.60233, -36.8617, 1, -19.8384)

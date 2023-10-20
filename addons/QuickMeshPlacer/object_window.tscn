@@ -5,6 +5,7 @@
 [node name="object_window" type="Control"]
 custom_minimum_size = Vector2(6.91, 0.115)
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -880.0
@@ -54,11 +55,25 @@ text = "Moment"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Current Object:  Cube "
+text = "Current Object:   "
 
 [node name="Mode" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Mode: 0 | index: 0 "
+text = "Index: 0 "
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "1.00000000005821"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+text = "Block Tool"
 
 [connection signal="pressed" from="VBoxContainer/CubeBtn" to="." method="_on_cube_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/SphereBtn" to="." method="_on_sphere_btn_pressed"]
@@ -67,3 +82,5 @@ text = "Mode: 0 | index: 0 "
 [connection signal="pressed" from="VBoxContainer/PlaneBtn" to="." method="_on_plane_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/CircleBtn" to="." method="_on_circle_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_reset_values_btn_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]
