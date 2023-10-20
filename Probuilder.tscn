@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu2enw0aawph3"]
+
+[ext_resource type="Script" path="res://Locker.gd" id="1_bshdc"]
+[ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="2_x3wmu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rkp4h"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_bshdc")
+metadata/_edit_group_ = true
+
+[node name="Ground" type="Area3D" parent="."]
+script = ExtResource("1_bshdc")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_hlp4v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_rkp4h")
+
+[node name="Level" type="Node" parent="Ground"]
+
+[node name="Cube" type="Area3D" parent="." instance=ExtResource("2_x3wmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26983, -0.273502, -0.673346)

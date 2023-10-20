@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://sfkn45q2po8e"]
+
+[ext_resource type="Script" path="res://addons/QuickMeshPlacer/object_window.gd" id="1_0adoe"]
+
+[node name="object_window" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 153.0
+offset_bottom = 329.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_0adoe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 152.895
+offset_bottom = 275.79
+
+[node name="CubeBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BTN1"
+
+[node name="SphereBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BTN2"
+
+[node name="CapsuleBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BTN3"
+
+[node name="randomBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BTN4"
+
+[node name="ResetValuesBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[node name="SaveSCeneBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "save Scene"
+
+[node name="ReloadSceneBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "reloadScene"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "htrda"
+
+[node name="Mode" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mode: 3 | index: 2 "
+
+[connection signal="pressed" from="VBoxContainer/CubeBtn" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SphereBtn" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/CapsuleBtn" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/randomBtn" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveSCeneBtn" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="VBoxContainer/ReloadSceneBtn" to="." method="_on_button_7_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c714qqdv1cq15"]
+
+[ext_resource type="Script" path="res://PositionTracker.gd" id="1_0ck0r"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("1_0ck0r")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpejuau4yo7r1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_prsj5"]
+height = 0.001
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vpbc0"]
+
+[node name="Sphere" type="Area3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_prsj5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.131, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_vpbc0")

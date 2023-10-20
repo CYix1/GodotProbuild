@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3d1a8rc30nsa"]
+
+[ext_resource type="Script" path="res://addons/QuickMeshPlacer/prefButton.gd" id="1_r4ihe"]
+
+[node name="pref_Btn" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_r4ihe")
