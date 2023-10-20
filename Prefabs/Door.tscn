@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu65ftqlrljj8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_naknm"]
+size = Vector3(1, 1.64678, 1.02689)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_in3jm"]
+
+[node name="Door" type="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_naknm")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(1, 1.489, 1)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.78, 0, 0, 0, 0.97, 0, 0, 0, 1.53, -0.000626445, -0.403801, -0.000579119)
+operation = 2
+mesh = SubResource("CapsuleMesh_in3jm")

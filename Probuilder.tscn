@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu2enw0aawph3"]
+[gd_scene load_steps=11 format=3 uid="uid://bu2enw0aawph3"]
 
 [ext_resource type="Script" path="res://Locker.gd" id="1_bshdc"]
 [ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_8q5ka"]
 [ext_resource type="PackedScene" uid="uid://dpejuau4yo7r1" path="res://Prefabs/Circle.tscn" id="4_2ecy7"]
-[ext_resource type="PackedScene" uid="uid://cqxvikhm7kksk" path="res://Prefabs/Sphere.tscn" id="4_a8uo6"]
-[ext_resource type="PackedScene" uid="uid://c32pdv3ujpngh" path="res://Prefabs/Plane.tscn" id="5_unwpv"]
+[ext_resource type="PackedScene" uid="uid://cx7ai8m34xjs5" path="res://Prefabs/Window.tscn" id="6_tdp84"]
+[ext_resource type="PackedScene" uid="uid://cu65ftqlrljj8" path="res://Prefabs/Door.tscn" id="7_pdeky"]
+[ext_resource type="PackedScene" uid="uid://c1uqamyiy6jgr" path="res://Prefabs/Cylinder.tscn" id="8_02544"]
+[ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="9_1ul0c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
 size = Vector3(2, 0.1, 2)
@@ -32,46 +34,38 @@ shape = SubResource("BoxShape3D_hlp4v")
 material_override = SubResource("StandardMaterial3D_dn6vt")
 mesh = SubResource("PlaneMesh_rkp4h")
 
-[node name="Level" type="Node" parent="Ground"]
+[node name="Sphere" type="Area3D" parent="." instance=ExtResource("4_2ecy7")]
+transform = Transform3D(42, 0, 0, 0, 64.9422, 0, 0, 0, 46, -5.76124, -0.450001, 43.4224)
 
-[node name="Sphere" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(13.8311, 0, 0, 0, 13.8311, 0, 0, 0, 13.8311, -32.5151, -13.1742, 0.939923)
+[node name="Cylinder" type="Area3D" parent="." instance=ExtResource("8_02544")]
+transform = Transform3D(20, 0, 0, 0, 34.8013, 0, 0, 0, 15, -45.0544, -0.450001, 28.1079)
 
-[node name="@Area3D@95302" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(7.97621, 0, 0, 0, 7.97621, 0, 0, 0, 7.97621, -56.5777, 14.2883, 5.4535)
+[node name="Stairs" type="Node3D" parent="." instance=ExtResource("6_tdp84")]
+transform = Transform3D(26, 0, 0, 0, 53.2903, 0, 0, 0, 16, 32.9574, -0.450001, 31.5642)
 
-[node name="@Area3D@95303" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(18.3698, 0, 0, 0, 18.3698, 0, 0, 0, 18.3698, -1.46975, -13.6171, 19.8393)
+[node name="Door" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
+transform = Transform3D(30, 0, 0, 0, 57.1616, 0, 0, 0, 17, -51.3982, -0.450001, 57.3473)
 
-[node name="@Area3D@95308" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(45.2159, 0, 0, 0, 45.2159, 0, 0, 0, 45.2159, -55.0126, 1, -57.0888)
+[node name="@Node3D@257810" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
+transform = Transform3D(21, 0, 0, 0, 39.8447, 0, 0, 0, 34, -44.5252, -0.450001, 59.8368)
 
-[node name="@Area3D@95465" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(36.3324, 0, 0, 0, 36.3324, 0, 0, 0, 36.3324, 10.2336, -9.16687, 18.5069)
+[node name="@Node3D@257811" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
+transform = Transform3D(189, 0, 0, 0, 65.1504, 0, 0, 0, 19, -24.8929, -0.450001, -41.7211)
 
-[node name="@Area3D@95472" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(12.6194, 0, 0, 0, 12.6194, 0, 0, 0, 12.6194, -36.7539, 7.64415, 13.0267)
+[node name="@Node3D@257812" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
+transform = Transform3D(11, 0, 0, 0, 86.1423, 0, 0, 0, 63, 64.3153, -0.450001, -46.3852)
 
-[node name="@Area3D@97370" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(5.7, 0, 0, 0, 5.7, 0, 0, 0, 5.7, -74.3794, 12.2212, -7.02364)
+[node name="@Node3D@257813" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
+transform = Transform3D(35, 0, 0, 0, 39.5238, 0, 0, 0, 12, 53.4626, -0.450001, 1.68134)
 
-[node name="@Area3D@97371" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(14.5003, 0, 0, 0, 14.5003, 0, 0, 0, 14.5003, -24.0303, 6.31532, 19.9618)
+[node name="Cube" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
+transform = Transform3D(62, 0, 0, 0, 56.553, 0, 0, 0, 62, -0.929125, -0.450001, 69.551)
 
-[node name="@Area3D@97372" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(1.20416, 0, 0, 0, 1.20416, 0, 0, 0, 1.20416, -40.3807, 16.7983, 17.2505)
+[node name="@Area3D@257814" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
+transform = Transform3D(25, 0, 0, 0, 18.629, 0, 0, 0, 9, -82.6325, -0.450001, 87.6777)
 
-[node name="@Area3D@97379" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(16.1409, 0, 0, 0, 16.1409, 0, 0, 0, 16.1409, -22.3567, -23.0666, 0.236554)
+[node name="@Area3D@257815" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
+transform = Transform3D(30, 0, 0, 0, 22.4018, 0, 0, 0, 8, -98.5037, -0.450001, 73.0423)
 
-[node name="@Area3D@97690" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(22.1939, 0, 0, 0, 22.1939, 0, 0, 0, 22.1939, 4.10605, -19.6707, 19.0125)
-
-[node name="@Area3D@97691" parent="." instance=ExtResource("4_a8uo6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.0794, 8.97297, -5.42009)
-
-[node name="@Area3D@38162" type="Area3D" parent="." instance=ExtResource("4_2ecy7")]
-transform = Transform3D(27.2947, 0, 0, 0, 27.2947, 0, 0, 0, 27.2947, -13.4344, 1, -16.6203)
-
-[node name="Plane" type="Area3D" parent="." instance=ExtResource("5_unwpv")]
-transform = Transform3D(8.60233, 0, 0, 0, 8.60233, 0, 0, 0, 8.60233, -36.8617, 1, -19.8384)
+[node name="@Area3D@259130" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
+transform = Transform3D(27, 0, 0, 0, 26.2992, 0, 0, 0, 32, 54.8535, -0.450001, 56.9377)

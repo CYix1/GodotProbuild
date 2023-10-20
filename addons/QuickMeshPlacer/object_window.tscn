@@ -21,29 +21,8 @@ layout_mode = 0
 offset_right = 185.0
 offset_bottom = 331.0
 
-[node name="CubeBtn" type="Button" parent="VBoxContainer"]
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-text = "Cube"
-
-[node name="SphereBtn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Sphere"
-
-[node name="CapsuleBtn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Capsule"
-
-[node name="CylinderBtn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Cylinder"
-
-[node name="PlaneBtn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Plane"
-
-[node name="CircleBtn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Circle"
 
 [node name="ResetValuesBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -51,7 +30,7 @@ text = "Reset"
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Moment"
+text = "Ground"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -59,28 +38,22 @@ text = "Current Object:   "
 
 [node name="Mode" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Index: 0 "
+text = "Index: 2 "
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
-max_value = 5.0
-step = 0.1
-value = 1.0
+max_value = 2.0
+step = 0.01
+value = 0.3
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "1.00000000005821"
+text = "0.3000000002794"
 
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
 text = "Block Tool"
 
-[connection signal="pressed" from="VBoxContainer/CubeBtn" to="." method="_on_cube_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/SphereBtn" to="." method="_on_sphere_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/CapsuleBtn" to="." method="_on_capsule_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/CylinderBtn" to="." method="_on_cylinder_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/PlaneBtn" to="." method="_on_plane_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/CircleBtn" to="." method="_on_circle_btn_pressed"]
 [connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_reset_values_btn_pressed"]
 [connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx7ai8m34xjs5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_naknm"]
+
+[node name="Stairs" type="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_naknm")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+operation = 2
+radius = 0.3
+height = 1.43768
+sides = 4

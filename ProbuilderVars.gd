@@ -10,16 +10,19 @@ var mouse_position = Vector2()
 var z_depth=1000
 var position_3D= Vector3()
 var scaling_factor_factor=1
-var objs=[preload("res://Prefabs/Cube.tscn"),
-preload("res://Prefabs/Sphere.tscn"),
-preload("res://Prefabs/Capsule.tscn"),
-preload("res://Prefabs/Cylinder.tscn"),
-preload("res://Prefabs/Plane.tscn"),
+var objs=[preload("res://Prefabs/Capsule.tscn"),
 preload("res://Prefabs/Circle.tscn"),
-preload("res://Prefabs/Stairs.tscn")
+preload("res://Prefabs/Cube.tscn"),
+preload("res://Prefabs/Cylinder.tscn"),
+preload("res://Prefabs/Door.tscn"),
+preload("res://Prefabs/Plane.tscn"),
+preload("res://Prefabs/Sphere.tscn"),
+preload("res://Prefabs/Stairs.tscn"),
+preload("res://Prefabs/Window.tscn")
 ]
 
 
+#NOT USED
 var current_scene = null
 
 func _ready():
