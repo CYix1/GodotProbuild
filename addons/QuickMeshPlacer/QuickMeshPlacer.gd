@@ -57,6 +57,7 @@ func _forward_3d_gui_input(camera, event):
 			ProbuilderVars.instantiated_obj=ProbuilderVars.objs[ProbuilderVars.selected_index].instantiate()
 			var Owner=collisionParent.get_parent()
 			Owner.add_child(ProbuilderVars.instantiated_obj)
+			ProbuilderVars.instantiated_obj.name= "block"
 			
 			#code to set instantiated obj as persistent
 			ProbuilderVars.instantiated_obj.owner=Owner
