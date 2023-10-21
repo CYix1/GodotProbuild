@@ -2,8 +2,13 @@
 extends Control
 
 
-var lbl_txt=ProbuilderVars.label_text
 func _ready():
+	#Events
+	ProbuilderVars.on_block.connect(_on_block_change)
+	ProbuilderVars.on_snap_objects.connect(_on_snap_change)
+	ProbuilderVars.on_all_axis_scale.connect(_on_all_axis_change)
+	ProbuilderVars.on_raycast_ground.connect(_on_raycast_ground_change)
+	
 	#list of all scenes in Prefabs
 	print(list_files_in_directory("res://Prefabs/"))
 	var counter=0
@@ -22,10 +27,11 @@ func _ready():
 
 #continous changing of some labels... should be events
 func _process(delta):
-	$VBoxContainer/Label.text = lbl_txt
-	$VBoxContainer/Mode.text = "Index: %d " % [ ProbuilderVars.selected_index] 
-	$VBoxContainer/Label2.text= "Current Object:  %s " % ProbuilderVars.objs[ProbuilderVars.selected_index].resource_name
+	$VBoxContainer/Label.text = ProbuilderVars.label_text
+	#$VBoxContainer/Mode.text = "Tool Blocked? %s " % [ ProbuilderVars.block] 
+	$VBoxContainer/Label2.text= "Current Object:  %s " % str(ProbuilderVars.objs[ProbuilderVars.selected_index].resource_name)
 	
+
 
 func list_files_in_directory(path):
 	var files = []
@@ -37,18 +43,28 @@ func list_files_in_directory(path):
 		var file = dir.get_next()
 		if file == "":
 			break
-		elif not file.begins_with("."):
+		elif not file.begins_with(".") and file.ends_with("tscn"):
+			
 			files.append(file)
 
 	dir.list_dir_end()
 
 	return files
 	
-
-
+func _on_block_change(value):
+	$VBoxContainer/BlockCheckBtn.button_pressed=value
+	
+func _on_snap_change(value):
+	$VBoxContainer/SnapCheckBtn.button_pressed=value
+	
+func _on_all_axis_change(value):
+	$VBoxContainer/AllAxisScale.button_pressed=value
+	
+func _on_raycast_ground_change(value):
+	$VBoxContainer/RayCastGroundBtn.button_pressed=value
+	
 func _on_reset_values_btn_pressed():
 	ProbuilderVars.selected_index=0
-	#TODO other Reset things?
 
 
 func _on_h_slider_value_changed(value):
@@ -56,6 +72,19 @@ func _on_h_slider_value_changed(value):
 	ProbuilderVars.scaling_factor_factor=value
 
 
-func _on_check_box_pressed():
-	ProbuilderVars.block=!ProbuilderVars.block
-	print(ProbuilderVars.block)
+func _on_check_button_toggled(button_pressed):
+	ProbuilderVars.block=button_pressed
+
+
+func _on_snap_check_btn_toggled(button_pressed):
+	ProbuilderVars.snap_objects=button_pressed
+
+
+
+func _on_all_axis_scale_toggled(button_pressed):
+	ProbuilderVars.all_axis_scale=button_pressed
+
+
+func _on_ray_cast_ground_btn_toggled(button_pressed):
+	ProbuilderVars.raycast_ground=button_pressed
+	

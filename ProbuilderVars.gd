@@ -5,7 +5,42 @@ extends Node
 var label_text="Moment"
 var selected_index=0
 var instantiated_obj=null
-var block=false
+
+signal on_block(new_value)
+var block=false:
+	get:
+		return block
+	set(value):
+		on_block.emit(value)
+		block = value
+		
+signal on_snap_objects(new_value)
+var snap_objects=false:
+	get:
+		return snap_objects
+	set(value):
+		
+		on_snap_objects.emit(value)
+		snap_objects = value
+		
+
+signal on_all_axis_scale(new_value)
+var all_axis_scale=false:
+	get:
+		return all_axis_scale
+	set(value):
+		on_all_axis_scale.emit(value)
+		all_axis_scale = value
+
+signal on_raycast_ground(new_value)
+var raycast_ground=true:
+	get:
+		return raycast_ground
+	set(value):
+		on_raycast_ground.emit(value)
+		raycast_ground = value
+		
+
 var mouse_position = Vector2()
 var z_depth=1000
 var position_3D= Vector3()
@@ -18,8 +53,10 @@ preload("res://Prefabs/Door.tscn"),
 preload("res://Prefabs/Plane.tscn"),
 preload("res://Prefabs/Sphere.tscn"),
 preload("res://Prefabs/Stairs.tscn"),
+preload("res://Prefabs/StickyText.tscn"),
 preload("res://Prefabs/Window.tscn")
 ]
+#events if specific values are changed I hop
 
 
 #NOT USED

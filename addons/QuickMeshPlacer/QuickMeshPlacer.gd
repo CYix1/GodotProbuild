@@ -32,6 +32,9 @@ var collisionPosition=null
 
 #GET THE FUCKING MOUSEPOSITION GOD DAMMIT
 func _forward_3d_gui_input(camera, event):
+	if event is InputEventKey:
+		handle_key_input(event)
+	
 	#general blocker of all logic, comes in handy for sure
 	if ProbuilderVars.block:
 		return
@@ -58,17 +61,20 @@ func _forward_3d_gui_input(camera, event):
 			#code to set instantiated obj as persistent
 			ProbuilderVars.instantiated_obj.owner=Owner
 			ProbuilderVars.instantiated_obj.set_owner(Owner)
-		
-		
-			#little thing
-			
 			ProbuilderVars.instantiated_obj.position=collisionPosition
-			#print("first click")
+			
+			if ProbuilderVars.snap_objects:
+				collisionPosition=collisionPosition.round()
+				ProbuilderVars.instantiated_obj.position=ProbuilderVars.instantiated_obj.position.round()
+			
 		
 		#To make the script less heavy, u can change the secondevent to a boolean and not an event!
 		elif secondEvent == null  and firstEvent:
 			secondEvent=event
-			
+			if ProbuilderVars.all_axis_scale:
+				firstEvent = null
+				secondEvent= null
+				thirdEvent=null
 		elif thirdEvent ==null and secondEvent and firstEvent:
 			thirdEvent=event
 			firstEvent = null
@@ -78,27 +84,39 @@ func _forward_3d_gui_input(camera, event):
 	
 	#if it's on the second step, gradually modify the scale!
 	if firstEvent and secondEvent==null and event is InputEventMouseMotion:
-		#print((event.position-firstEvent.position))
-		var temp=(event.position-firstEvent.position).abs()
-		ProbuilderVars.instantiated_obj.scale=Vector3(temp.x,1,temp.y)
+		if ProbuilderVars.all_axis_scale:
+			var scalingfactor=(event.position-firstEvent.position).length()*ProbuilderVars.scaling_factor_factor
+			if (event.position-firstEvent.position).length()<0.2:
+				ProbuilderVars.instantiated_obj.scale=Vector3(0.2,0.2,0.2)
+			else:
+				ProbuilderVars.instantiated_obj.scale=Vector3(scalingfactor,scalingfactor,scalingfactor)
+		
+		else:
+			#print((event.position-firstEvent.position))
+			var temp=(event.position-firstEvent.position).abs()
+			ProbuilderVars.instantiated_obj.scale=Vector3(temp.x,1,temp.y)
+		if ProbuilderVars.snap_objects:
+			ProbuilderVars.instantiated_obj.scale=ProbuilderVars.instantiated_obj.scale.round()
+	
 	
 	
 	#if it's on the third step, gradually modify the height!
 	if firstEvent and secondEvent and thirdEvent ==null and event is InputEventMouseMotion:
+			
 		#print((event.position-firstEvent.position))
 		var scalingfactor=(event.position-firstEvent.position).length()*ProbuilderVars.scaling_factor_factor
 		if (event.position-firstEvent.position).length()<0.2:
 			ProbuilderVars.instantiated_obj.scale.y=0.2
 		else:
 			ProbuilderVars.instantiated_obj.scale.y=scalingfactor
-	
+		if ProbuilderVars.snap_objects:
+			ProbuilderVars.instantiated_obj.scale=ProbuilderVars.instantiated_obj.scale.round()
 		#generic scaling on all 3 Axis Maybe custom option?
-#		var scalingfactor=(event.position-firstEvent.position).length()*ProbuilderVars.scaling_factor_factor
-#		if (event.position-firstEvent.position).length()*ProbuilderVars.scaling_factor_factor<0.2:
-#			ProbuilderVars.instantiated_obj.scale=Vector3(0.2,0.2,0.2)
-#		else:
-#			ProbuilderVars.instantiated_obj.scale=Vector3(scalingfactor,scalingfactor,scalingfactor)
-			
+#	
+func handle_key_input(event):
+	ProbuilderVars.block=event.keycode==KEY_CTRL	
+	ProbuilderVars.snap_objects=event.keycode==KEY_SHIFT	
+	ProbuilderVars.block=event.keycode==KEY_TAB	
 	
 #set 2d/3D mouse position
 func set_mouse_position(camera,pos):
@@ -117,12 +135,21 @@ func customRayCast(camera :Camera3D, pos:Vector2,event ):
 	var collision = space.intersect_ray(query)
 	
 	if collision: # RaycastHit
-		ProbuilderVars.label_text=collision.collider.name
-		#Call next method
 		
-		if collision.collider.name == "Ground":
+		#Call next method
+		if ProbuilderVars.raycast_ground:
+			if collision.collider.name == "Ground":
+				collisionParent=collision.collider
+				collisionPosition=collision.position
+				ProbuilderVars.label_text=collision.collider.name
+			else:
+				collisionPosition=Vector3(0,0,0)
+				ProbuilderVars.label_text="RANDOM POSITION POSSIBLE"
+		else: 
 			collisionParent=collision.collider
 			collisionPosition=collision.position
+		
+			ProbuilderVars.label_text=collision.collider.name
 			
 	else:# no RaycastHit
 		ProbuilderVars.label_text="no raycasthit!"

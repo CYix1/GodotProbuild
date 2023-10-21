@@ -1,12 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu2enw0aawph3"]
+[gd_scene load_steps=6 format=3 uid="uid://bu2enw0aawph3"]
 
 [ext_resource type="Script" path="res://Locker.gd" id="1_bshdc"]
 [ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_8q5ka"]
-[ext_resource type="PackedScene" uid="uid://dpejuau4yo7r1" path="res://Prefabs/Circle.tscn" id="4_2ecy7"]
-[ext_resource type="PackedScene" uid="uid://cx7ai8m34xjs5" path="res://Prefabs/Window.tscn" id="6_tdp84"]
-[ext_resource type="PackedScene" uid="uid://cu65ftqlrljj8" path="res://Prefabs/Door.tscn" id="7_pdeky"]
-[ext_resource type="PackedScene" uid="uid://c1uqamyiy6jgr" path="res://Prefabs/Cylinder.tscn" id="8_02544"]
-[ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="9_1ul0c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
 size = Vector3(2, 0.1, 2)
@@ -33,39 +28,3 @@ shape = SubResource("BoxShape3D_hlp4v")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 material_override = SubResource("StandardMaterial3D_dn6vt")
 mesh = SubResource("PlaneMesh_rkp4h")
-
-[node name="Sphere" type="Area3D" parent="." instance=ExtResource("4_2ecy7")]
-transform = Transform3D(42, 0, 0, 0, 64.9422, 0, 0, 0, 46, -5.76124, -0.450001, 43.4224)
-
-[node name="Cylinder" type="Area3D" parent="." instance=ExtResource("8_02544")]
-transform = Transform3D(20, 0, 0, 0, 34.8013, 0, 0, 0, 15, -45.0544, -0.450001, 28.1079)
-
-[node name="Stairs" type="Node3D" parent="." instance=ExtResource("6_tdp84")]
-transform = Transform3D(26, 0, 0, 0, 53.2903, 0, 0, 0, 16, 32.9574, -0.450001, 31.5642)
-
-[node name="Door" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
-transform = Transform3D(30, 0, 0, 0, 57.1616, 0, 0, 0, 17, -51.3982, -0.450001, 57.3473)
-
-[node name="@Node3D@257810" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
-transform = Transform3D(21, 0, 0, 0, 39.8447, 0, 0, 0, 34, -44.5252, -0.450001, 59.8368)
-
-[node name="@Node3D@257811" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
-transform = Transform3D(189, 0, 0, 0, 65.1504, 0, 0, 0, 19, -24.8929, -0.450001, -41.7211)
-
-[node name="@Node3D@257812" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
-transform = Transform3D(11, 0, 0, 0, 86.1423, 0, 0, 0, 63, 64.3153, -0.450001, -46.3852)
-
-[node name="@Node3D@257813" type="Node3D" parent="." instance=ExtResource("7_pdeky")]
-transform = Transform3D(35, 0, 0, 0, 39.5238, 0, 0, 0, 12, 53.4626, -0.450001, 1.68134)
-
-[node name="Cube" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
-transform = Transform3D(62, 0, 0, 0, 56.553, 0, 0, 0, 62, -0.929125, -0.450001, 69.551)
-
-[node name="@Area3D@257814" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
-transform = Transform3D(25, 0, 0, 0, 18.629, 0, 0, 0, 9, -82.6325, -0.450001, 87.6777)
-
-[node name="@Area3D@257815" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
-transform = Transform3D(30, 0, 0, 0, 22.4018, 0, 0, 0, 8, -98.5037, -0.450001, 73.0423)
-
-[node name="@Area3D@259130" type="Area3D" parent="." instance=ExtResource("9_1ul0c")]
-transform = Transform3D(27, 0, 0, 0, 26.2992, 0, 0, 0, 32, 54.8535, -0.450001, 56.9377)

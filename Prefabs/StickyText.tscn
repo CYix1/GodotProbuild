@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba53ioidbrfpf"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/StickyText.gd" id="1_m3pql"]
+
+[node name="StickyText" type="Node3D"]
+script = ExtResource("1_m3pql")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, -4.37114e-08, 4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, 0, 0, 0)
+text = "Tesdffesgr"
