@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://bu2enw0aawph3"]
+
+[ext_resource type="Script" path="res://Locker.gd" id="1_h42rf"]
+[ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_256vn"]
+[ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="3_l24no"]
+[ext_resource type="PackedScene" uid="uid://cu65ftqlrljj8" path="res://Prefabs/Door.tscn" id="4_t44gj"]
+[ext_resource type="PackedScene" uid="uid://c1uqamyiy6jgr" path="res://Prefabs/Cylinder.tscn" id="5_vt7i4"]
+[ext_resource type="PackedScene" uid="uid://ba53ioidbrfpf" path="res://Prefabs/StickyText.tscn" id="6_5gcmg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn6vt"]
+albedo_texture = ExtResource("2_256vn")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rkp4h"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_h42rf")
+
+[node name="Ground" type="Area3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
+script = ExtResource("1_h42rf")
+predefined_position = Vector3(0, -0.5, 0)
+predefined_scale = Vector3(100, 1, 100)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_hlp4v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_dn6vt")
+mesh = SubResource("PlaneMesh_rkp4h")
+
+[node name="block" parent="." instance=ExtResource("3_l24no")]
+transform = Transform3D(27.3832, 0, 0, 0, 23.0191, 0, 0, 0, 16.0166, -18.5262, 7.49921, -83.7685)
+
+[node name="block2" parent="." instance=ExtResource("4_t44gj")]
+transform = Transform3D(9.486, 0, 0, 0, 8.551, 0, 0, 0, 1.186, 0.106403, 6.15752, -75.9826)
+
+[node name="block3" parent="." instance=ExtResource("3_l24no")]
+transform = Transform3D(27.3832, 0, 0, 0, 23.0191, 0, 0, 0, 16.0166, 18.6496, 10.5555, -83.8313)
+
+[node name="block4" parent="." instance=ExtResource("3_l24no")]
+transform = Transform3D(32, 0, 0, 0, 72.2496, 0, 0, 0, 35, -57.1508, -0.449997, -90.3041)
+
+[node name="block5" parent="." instance=ExtResource("3_l24no")]
+transform = Transform3D(27, 0, 0, 0, 71.0282, 0, 0, 0, 36, 47.6178, -0.449997, -89.0332)
+
+[node name="block6" parent="." instance=ExtResource("3_l24no")]
+transform = Transform3D(24, 0, 0, 0, 50, 0, 0, 0, 156, -84.0027, 3.24216, 4.70066)
+
+[node name="block7" parent="." instance=ExtResource("3_l24no")]
+transform = Transform3D(33, 0, 0, 0, 68.2642, 0, 0, 0, 137, 77.9287, -0.449997, 0.200905)
+
+[node name="block8" parent="." instance=ExtResource("5_vt7i4")]
+transform = Transform3D(31.1448, 0, 0, 0, 31.1448, 0, 0, 0, 31.1448, 83.803, 26.3808, -83.121)
+
+[node name="block9" parent="." instance=ExtResource("5_vt7i4")]
+transform = Transform3D(31.1448, 0, 0, 0, 31.1448, 0, 0, 0, 31.1448, -89.572, 20.7413, -92.104)
+
+[node name="block10" parent="." instance=ExtResource("6_5gcmg")]
+transform = Transform3D(102.083, 0, 0, 0, 102.083, 0, 0, 0, 102.083, 0, 0, 0)
+text = "Garten"
+
+[node name="block11" parent="." instance=ExtResource("6_5gcmg")]
+transform = Transform3D(-0.279727, 0, 102.083, 0, 102.083, 0, -102.083, 0, -0.279727, -73.6232, 68.0074, -0.0243458)
+text = "Seiten Gang"
+
+[node name="block12" parent="." instance=ExtResource("6_5gcmg")]
+transform = Transform3D(-2.73814, 0, -102.047, 0, 102.083, 0, 102.047, 0, -2.73814, 69.3137, 68.0074, -0.416021)
+text = "Seiten Gang"
+
+[node name="block13" parent="." instance=ExtResource("6_5gcmg")]
+transform = Transform3D(102.079, 0, 0.949622, 0, 102.083, 0, -0.949622, 0, 102.079, 0.425049, 68.0074, -76.5252)
+text = "Haupteingang"
+
+[node name="block14" parent="." instance=ExtResource("6_5gcmg")]
+transform = Transform3D(102.079, 0, 0.949622, 0, 102.083, 0, -0.949622, 0, 102.079, 67.236, 68.0074, 87.0534)
+text = "Notes: Metrics "

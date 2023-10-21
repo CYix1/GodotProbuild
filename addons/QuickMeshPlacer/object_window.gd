@@ -68,7 +68,7 @@ func _on_reset_values_btn_pressed():
 
 
 func _on_h_slider_value_changed(value):
-	$VBoxContainer/Label3.text=str(value)
+	$VBoxContainer/Label3.text="scaling speed: "+str(value)
 	ProbuilderVars.scaling_factor_factor=value
 
 
@@ -87,4 +87,10 @@ func _on_all_axis_scale_toggled(button_pressed):
 
 func _on_ray_cast_ground_btn_toggled(button_pressed):
 	ProbuilderVars.raycast_ground=button_pressed
+	
+
+
+func _on_h_slider_2_value_changed(value):
+	$VBoxContainer/Label4.text="snap value: "+str(value)
+	ProbuilderVars.snapping_value=Vector3(value,value,value)
 	

@@ -30,7 +30,7 @@ text = "Reset"
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "RANDOM POSITION POSSIBLE"
+text = "Ground"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -48,7 +48,16 @@ value = 0.3
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "0.3000000002794"
+text = "SC: 0.3"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "snap value: "
 
 [node name="BlockCheckBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -56,6 +65,7 @@ text = "Block Tool"
 
 [node name="SnapCheckBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "Snap Objects "
 
 [node name="AllAxisScale" type="CheckButton" parent="VBoxContainer"]
@@ -64,11 +74,11 @@ text = "All Axis scale"
 
 [node name="RayCastGroundBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
-button_pressed = true
 text = "Raycast on Ground"
 
 [connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_reset_values_btn_pressed"]
 [connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="toggled" from="VBoxContainer/BlockCheckBtn" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/SnapCheckBtn" to="." method="_on_snap_check_btn_toggled"]
 [connection signal="toggled" from="VBoxContainer/AllAxisScale" to="." method="_on_all_axis_scale_toggled"]

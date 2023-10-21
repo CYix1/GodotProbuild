@@ -6,6 +6,7 @@ var label_text="Moment"
 var selected_index=0
 var instantiated_obj=null
 
+#events if specific values are changed I hop
 signal on_block(new_value)
 var block=false:
 	get:
@@ -56,8 +57,7 @@ preload("res://Prefabs/Stairs.tscn"),
 preload("res://Prefabs/StickyText.tscn"),
 preload("res://Prefabs/Window.tscn")
 ]
-#events if specific values are changed I hop
-
+var snapping_value=Vector3(0,0,0)
 
 #NOT USED
 var current_scene = null
