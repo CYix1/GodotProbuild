@@ -2,11 +2,7 @@
 A quick test to create a level design tool in godot
 
 ## Showcase
-<video controls>
-  <source src="ReadMeStuff/GodotProbuild.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-![video](ReadMeStuff/GodotProbuild.mp4)
+![[ReadMeStuff/GodotProbuild.mp4]]
 
 ## How does it work?
 This Plugin was made in one and a half days, as a tool for a university course. 
@@ -74,4 +70,11 @@ Now there should be a new Button visible in the dock!
 - Mouse Input in Editor (_forward_3d_gui_input)
 - Singleton/Autoload
 - persistent adding of Nodes into the scene hierachy
+
+## Known Issues
+- The tool can interfer in all scenes! => can be quite annoying
+- The Stairs is always the same
+- The shortcuts are not working as intented (removed atm)
+- Possible layouting problem in the dock, if there are too many prefabs
+- no selection of materials in the Tool is possible!
 
