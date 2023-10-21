@@ -114,10 +114,12 @@ func _forward_3d_gui_input(camera, event):
 			ProbuilderVars.instantiated_obj.scale=ProbuilderVars.instantiated_obj.scale.round()
 		#generic scaling on all 3 Axis Maybe custom option?
 #	
+'''
 func handle_key_input(event):
 	ProbuilderVars.block=event.keycode==KEY_CTRL	
 	ProbuilderVars.snap_objects=event.keycode==KEY_SHIFT	
 	ProbuilderVars.block=event.keycode==KEY_TAB	
+'''
 	
 #set 2d/3D mouse position
 func set_mouse_position(camera,pos):
