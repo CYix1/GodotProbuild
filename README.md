@@ -7,6 +7,7 @@ A quick test to create a level design tool in godot
   Your browser does not support the video tag.
 </video>
 ![video](ReadMeStuff/GodotProbuild.mp4)
+
 ## How does it work?
 This Plugin was made in one and a half days, as a tool for a university course. 
 So bugs can happen!
