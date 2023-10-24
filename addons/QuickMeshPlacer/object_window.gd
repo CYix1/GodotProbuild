@@ -95,3 +95,7 @@ func _on_h_slider_2_value_changed(value):
 	$VBoxContainer/Label4.text="snap value: "+str(value)
 	ProbuilderVars.snapping_value=Vector3(value,value,value)
 	
+
+
+func _on_height_fix_btn_toggled(button_pressed):
+	ProbuilderVars.height_fix_after_placement.data=button_pressed

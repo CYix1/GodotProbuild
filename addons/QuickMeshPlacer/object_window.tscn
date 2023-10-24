@@ -34,11 +34,11 @@ text = "Ground"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "currentState: scale Object 1"
+text = "currentState: ready to place"
 
 [node name="Mode" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Tool Blocked? true "
+text = "Tool Blocked? false "
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
@@ -77,6 +77,11 @@ layout_mode = 2
 button_pressed = true
 text = "Raycast on Ground"
 
+[node name="HeightFixBtn" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "fix Height?"
+
 [connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_reset_values_btn_pressed"]
 [connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
@@ -84,3 +89,4 @@ text = "Raycast on Ground"
 [connection signal="toggled" from="VBoxContainer/SnapCheckBtn" to="." method="_on_snap_check_btn_toggled"]
 [connection signal="toggled" from="VBoxContainer/AllAxisScale" to="." method="_on_all_axis_scale_toggled"]
 [connection signal="toggled" from="VBoxContainer/RayCastGroundBtn" to="." method="_on_ray_cast_ground_btn_toggled"]
+[connection signal="toggled" from="VBoxContainer/HeightFixBtn" to="." method="_on_height_fix_btn_toggled"]

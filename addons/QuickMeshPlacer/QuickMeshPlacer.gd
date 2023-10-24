@@ -11,10 +11,13 @@ var first_click_position=Vector3()
 snapping with Vector3.snapped and not round?
 '''
 
+func test(value):
+	print(value)
 	
 func _enter_tree():
 	#loading the scene with the dock and setup dock and plugin
 	state=0
+	ProbuilderVars.height_fix_after_placement.on_value_change.connect(test)
 	object_window= preload("res://addons/QuickMeshPlacer/object_window.tscn").instantiate()
 	add_control_to_dock(EditorPlugin.DOCK_SLOT_LEFT_UL,object_window)
 	add_custom_type("Pref_Btn","Button",preload("res://addons/QuickMeshPlacer/prefButton.gd"),preload("res://icon.svg"))
@@ -35,9 +38,7 @@ func _forward_3d_gui_input(camera, event):
 	
 	if event is InputEventKey:
 		handle_key_input(event)
-	if event is InputEventMouseButton and event.pressed and event.button_index== 1:
-		customRayCast(camera,event.position,event )
-	
+
 	#general blocker of all logic, comes in handy for sure
 	if ProbuilderVars.block:
 		return
@@ -66,9 +67,17 @@ func _forward_3d_gui_input(camera, event):
 			ProbuilderVars.state_text="currentState: scale Object 2"
 			#skip one click since no height change needed
 			if ProbuilderVars.all_axis_scale:
-				state=0
+				
+				finish_placing()
+#				var offset=ProbuilderVars.instantiated_obj.scale.y/2
+#				ProbuilderVars.instantiated_obj.position.y=ProbuilderVars.instantiated_obj.position.y+offset	
+	
+				
 		elif state==2:
-			state=0
+			finish_placing()
+#			var offset=ProbuilderVars.instantiated_obj.scale.y/2
+#			ProbuilderVars.instantiated_obj.position.y=ProbuilderVars.instantiated_obj.position.y+offset	
+
 		#	print("second click")
 	
 	if state==0:
@@ -81,6 +90,7 @@ func _forward_3d_gui_input(camera, event):
 			var scalingfactor=(event.position-first_click_position).length()*ProbuilderVars.scaling_factor_factor
 			var scale_value=max(0.2,scalingfactor)
 			ProbuilderVars.instantiated_obj.scale=Vector3(scale_value,scale_value,scale_value)
+			
 			#if (event.position-first_click_position).length()<0.2:
 			#	ProbuilderVars.instantiated_obj.scale=Vector3(0.2,0.2,0.2)
 			#else:
@@ -97,9 +107,7 @@ func _forward_3d_gui_input(camera, event):
 			print(ProbuilderVars.instantiated_obj.scale.snapped(ProbuilderVars.snapping_value))
 			ProbuilderVars.instantiated_obj.scale=ProbuilderVars.instantiated_obj.scale.snapped(ProbuilderVars.snapping_value)
 	
-	
-	
-	#if it's on the third step, gradually modify the height!
+#if it's on the third step, gradually modify the height!
 	if state==2 and event is InputEventMouseMotion:
 			
 		#print((event.position-firstEvent.position))
@@ -109,7 +117,17 @@ func _forward_3d_gui_input(camera, event):
 		if ProbuilderVars.snap_objects:
 			ProbuilderVars.instantiated_obj.scale=ProbuilderVars.instantiated_obj.scale.snapped(ProbuilderVars.snapping_value)
 		#generic scaling on all 3 Axis Maybe custom option?
-#
+	
+func finish_placing():
+	
+	state=0
+	print(ProbuilderVars.height_fix_after_placement.data)
+	if ProbuilderVars.height_fix_after_placement.data:
+		print("daw")
+		var offset=ProbuilderVars.instantiated_obj.scale.y/2
+		ProbuilderVars.instantiated_obj.position.y=ProbuilderVars.instantiated_obj.position.y+offset	
+
+		
 func spawn_prefab():
 	ProbuilderVars.instantiated_obj=ProbuilderVars.objs[ProbuilderVars.selected_index].instantiate()
 	var Owner=collisionParent.get_parent()
@@ -124,7 +142,7 @@ func spawn_prefab():
 	if ProbuilderVars.snap_objects:
 		collisionPosition=collisionPosition.snapped(ProbuilderVars.snapping_value)
 		ProbuilderVars.instantiated_obj.position=ProbuilderVars.instantiated_obj.position.snapped(ProbuilderVars.snapping_value)
-
+		
 func handle_key_input(event):
 	pass
 	#if event.keycode==KEY_CTRL:
@@ -142,7 +160,8 @@ func handle_key_input(event):
 func set_mouse_position(camera,pos):
 	ProbuilderVars.mouse_position= pos
 	ProbuilderVars.position_3D= camera.project_position(ProbuilderVars.mouse_position,ProbuilderVars.z_depth)
-	
+
+
 #Raycasting from camera to mouse 3d Position!
 func customRayCast(camera :Camera3D, pos:Vector2,event ):
 	collisionParent=null

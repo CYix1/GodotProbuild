@@ -60,7 +60,16 @@ preload("res://Prefabs/StickyText.tscn"),
 preload("res://Prefabs/Window.tscn")
 ]
 var snapping_value=Vector3(0,0,0)
+var height_fix_after_placement= CustomDataType.new()
 
+class CustomDataType:
+	signal on_value_change(new_value)
+	var data=false:
+		get:
+			return data
+		set(value):
+			on_value_change.emit(value)
+			data = value
 #NOT USED
 var current_scene = null
 
