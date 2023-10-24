@@ -3,9 +3,11 @@ extends Node
 
 #TODO FIX THIS SHIT. u don't need evetyhing!
 var label_text="Moment"
+var state_text="currentState"
 var selected_index=0
 var instantiated_obj=null
-
+var p1:Vector3
+var p2:Vector3
 #events if specific values are changed I hop
 signal on_block(new_value)
 var block=false:

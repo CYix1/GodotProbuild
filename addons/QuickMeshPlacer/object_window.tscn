@@ -34,7 +34,7 @@ text = "Ground"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Current Object:   "
+text = "currentState: scale Object 1"
 
 [node name="Mode" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -65,15 +65,16 @@ text = "Block Tool"
 
 [node name="SnapCheckBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
-button_pressed = true
 text = "Snap Objects "
 
 [node name="AllAxisScale" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "All Axis scale"
 
 [node name="RayCastGroundBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "Raycast on Ground"
 
 [connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_reset_values_btn_pressed"]

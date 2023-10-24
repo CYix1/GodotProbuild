@@ -27,9 +27,10 @@ func _ready():
 
 #continous changing of some labels... should be events
 func _process(delta):
+
 	$VBoxContainer/Label.text = ProbuilderVars.label_text
-	#$VBoxContainer/Mode.text = "Tool Blocked? %s " % [ ProbuilderVars.block] 
-	$VBoxContainer/Label2.text= "Current Object:  %s " % str(ProbuilderVars.objs[ProbuilderVars.selected_index].resource_name)
+	$VBoxContainer/Mode.text = "Tool Blocked? %s " % [ ProbuilderVars.block] 
+	$VBoxContainer/Label2.text= ProbuilderVars.state_text
 	
 
 

@@ -32,8 +32,11 @@ func _handles(object):
 #random Variables for logic
 #GET THE FUCKING MOUSEPOSITION GOD DAMMIT
 func _forward_3d_gui_input(camera, event):
+	
 	if event is InputEventKey:
 		handle_key_input(event)
+	if event is InputEventMouseButton and event.pressed and event.button_index== 1:
+		customRayCast(camera,event.position,event )
 	
 	#general blocker of all logic, comes in handy for sure
 	if ProbuilderVars.block:
@@ -46,17 +49,21 @@ func _forward_3d_gui_input(camera, event):
 	#raycast action
 	if event is InputEventMouseButton and event.pressed and event.button_index== 1:
 		customRayCast(camera,event.position,event )
-		
+	
+	if state==0 and collisionParent == null:
+		return
 	
 	# 3Step logic. first to set position then set scale on x and z and then the last click will modify the height/y value
 	if event is InputEventMouseButton and event.pressed and event.button_index==1:
 		if state==0:
 			state=1
+			ProbuilderVars.state_text="currentState: scale Object 1"
 			first_click_position=event.position
 			spawn_prefab()
 		#To make the script less heavy, u can change the secondevent to a boolean and not an event!
 		elif state==1:
 			state=2
+			ProbuilderVars.state_text="currentState: scale Object 2"
 			#skip one click since no height change needed
 			if ProbuilderVars.all_axis_scale:
 				state=0
@@ -64,6 +71,8 @@ func _forward_3d_gui_input(camera, event):
 			state=0
 		#	print("second click")
 	
+	if state==0:
+		ProbuilderVars.state_text="currentState: ready to place"
 	#if it's on the second step, gradually modify the scale!
 	if state==1 and event is InputEventMouseMotion:
 		
@@ -118,11 +127,16 @@ func spawn_prefab():
 
 func handle_key_input(event):
 	pass
-'''
-	ProbuilderVars.block=event.keycode==KEY_CTRL	
-	ProbuilderVars.snap_objects=event.keycode==KEY_SHIFT	
-	ProbuilderVars.block=event.keycode==KEY_TAB	
-'''
+	#if event.keycode==KEY_CTRL:
+	#	ProbuilderVars.block=!ProbuilderVars.block
+	
+	#if event.keycode==KEY_SHIFT:
+	#	ProbuilderVars.snap_objects=!ProbuilderVars.snap_objects	
+		
+	#if event.keycode==KEY_TAB:
+	#	ProbuilderVars.all_axis_scale=!ProbuilderVars.all_axis_scale
+	
+
 	
 #set 2d/3D mouse position
 func set_mouse_position(camera,pos):
@@ -131,17 +145,23 @@ func set_mouse_position(camera,pos):
 	
 #Raycasting from camera to mouse 3d Position!
 func customRayCast(camera :Camera3D, pos:Vector2,event ):
+	collisionParent=null
 	ProbuilderVars.mouse_position= pos
+	
+	var ray_start = camera.project_ray_origin(pos)
+	var ray_end = ray_start + camera.project_ray_normal(pos) * 50000
+	ProbuilderVars.p1=ray_start
+	ProbuilderVars.p2=ray_end
 	
 	#Raycast specific things
 	var space = camera.get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(camera.global_position,
-			 ProbuilderVars.position_3D)
+	var query = PhysicsRayQueryParameters3D.create(ray_start,
+			 ray_end)
 	query.collide_with_areas=true
 	var collision = space.intersect_ray(query)
 	
 	if collision: # RaycastHit
-		
+		print(collision.position)	
 		#Set variables
 		if ProbuilderVars.raycast_ground:
 			if collision.collider.name == "Ground":
