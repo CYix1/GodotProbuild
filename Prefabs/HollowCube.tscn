@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://5cyq04gs3sbi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vc7vw"]
+
+[node name="HollowCube" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132258, 0)
+operation = 2
+size = Vector3(0.8, 0.9, 0.8)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, -0.4, 0)
+shape = SubResource("BoxShape3D_vc7vw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_vc7vw")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, -0.2, 0, 1, -8.74228e-09, 0, 0, 0, 1, -0.399774, 0, 0)
+shape = SubResource("BoxShape3D_vc7vw")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, -0.2, 0, 1, -8.74228e-09, 0, 0, 0, 1, 0.399774, 0, 0)
+shape = SubResource("BoxShape3D_vc7vw")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(2.07352e-15, 8.74228e-09, 1, 1, -8.74228e-09, -1.62838e-16, 4.37114e-08, 0.2, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_vc7vw")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(2.07352e-15, 8.74228e-09, 1, 1, -8.74228e-09, -1.62838e-16, 4.37114e-08, 0.2, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_vc7vw")

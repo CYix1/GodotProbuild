@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqmd6oyrnv15t"]
+
+[ext_resource type="Script" path="res://Scripts/Locker.gd" id="1_vla24"]
+[ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_6qeyq"]
+[ext_resource type="Script" path="res://addons/QuickMeshPlacer/debug_draw.gd" id="3_l0qi0"]
+[ext_resource type="PackedScene" uid="uid://c21kbltau4jk8" path="res://Prefabs/Capsule.tscn" id="4_3idwi"]
+[ext_resource type="PackedScene" uid="uid://dpejuau4yo7r1" path="res://Prefabs/Circle.tscn" id="5_iakw0"]
+[ext_resource type="PackedScene" uid="uid://cu65ftqlrljj8" path="res://Prefabs/Door.tscn" id="6_1cksd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0sdx"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmiip"]
+albedo_texture = ExtResource("2_6qeyq")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_acvl1"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_4mrxo"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_vla24")
+
+[node name="Ground" type="Area3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
+script = ExtResource("1_vla24")
+predefined_position = Vector3(0, -0.5, 0)
+predefined_scale = Vector3(100, 1, 100)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_j0sdx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+material_override = SubResource("StandardMaterial3D_vmiip")
+mesh = SubResource("PlaneMesh_acvl1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.8773, 62.5504, 36.9791)
+mesh = SubResource("ImmediateMesh_4mrxo")
+script = ExtResource("3_l0qi0")
+points = [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+
+[node name="Node3D" type="Node3D" parent="MeshInstance3D"]
+
+[node name="block" parent="." instance=ExtResource("4_3idwi")]
+transform = Transform3D(9, 0, 0, 0, 11.1803, 0, 0, 0, 8, 13.5625, -0.450001, -11.4101)
+
+[node name="block2" parent="." instance=ExtResource("4_3idwi")]
+transform = Transform3D(13, 0, 0, 0, 81.7068, 0, 0, 0, 11, -3.9555, -0.450001, -21.2384)
+
+[node name="block3" parent="." instance=ExtResource("4_3idwi")]
+transform = Transform3D(17, 0, 0, 0, 1.41421, 0, 0, 0, 9, 29.1915, -0.450001, 16.4876)
+
+[node name="block4" parent="." instance=ExtResource("4_3idwi")]
+transform = Transform3D(23, 0, 0, 0, 1, 0, 0, 0, 11, 14.1985, -0.450001, 20.0873)
+
+[node name="block5" parent="." instance=ExtResource("4_3idwi")]
+transform = Transform3D(13, 0, 0, 0, 8, 0, 0, 0, 14, 24.3236, -0.450001, -15.2722)
+
+[node name="block6" parent="." instance=ExtResource("5_iakw0")]
+transform = Transform3D(34, 0, 0, 0, 27.4607, 0, 0, 0, 14, -11.3745, -0.450001, -38.4366)
+
+[node name="block7" type="Node3D" parent="." instance=ExtResource("6_1cksd")]
+transform = Transform3D(19, 0, 0, 0, 41.0488, 0, 0, 0, 10, -28.9921, -0.450001, -2.45574)

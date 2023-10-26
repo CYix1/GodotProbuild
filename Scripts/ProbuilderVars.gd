@@ -53,11 +53,13 @@ preload("res://Prefabs/Circle.tscn"),
 preload("res://Prefabs/Cube.tscn"),
 preload("res://Prefabs/Cylinder.tscn"),
 preload("res://Prefabs/Door.tscn"),
+preload("res://Prefabs/HollowCube.tscn"),
+preload("res://Prefabs/House.tscn"),
 preload("res://Prefabs/Plane.tscn"),
+preload("res://Prefabs/Slope.tscn"),
 preload("res://Prefabs/Sphere.tscn"),
-preload("res://Prefabs/Stairs.tscn"),
 preload("res://Prefabs/StickyText.tscn"),
-preload("res://Prefabs/Window.tscn")
+
 ]
 var snapping_value=Vector3(0,0,0)
 var height_fix_after_placement= CustomDataType.new()

@@ -99,7 +99,7 @@ func _forward_3d_gui_input(camera, event):
 		else:
 			#print((event.position-firstEvent.position))
 			var temp=(event.position-first_click_position).abs()
-			ProbuilderVars.instantiated_obj.scale=Vector3(temp.x,1,temp.y)
+			ProbuilderVars.instantiated_obj.scale=Vector3(temp.x,min(temp.x,temp.y),temp.y)
 			
 		#if "snapping" round scale!
 		if ProbuilderVars.snap_objects:
@@ -117,20 +117,23 @@ func _forward_3d_gui_input(camera, event):
 		if ProbuilderVars.snap_objects:
 			ProbuilderVars.instantiated_obj.scale=ProbuilderVars.instantiated_obj.scale.snapped(ProbuilderVars.snapping_value)
 		#generic scaling on all 3 Axis Maybe custom option?
-	
+
+
 func finish_placing():
-	
+	ProbuilderVars.block=true
 	state=0
-	print(ProbuilderVars.height_fix_after_placement.data)
+
 	if ProbuilderVars.height_fix_after_placement.data:
-		print("daw")
+		
 		var offset=ProbuilderVars.instantiated_obj.scale.y/2
 		ProbuilderVars.instantiated_obj.position.y=ProbuilderVars.instantiated_obj.position.y+offset	
 
 		
 func spawn_prefab():
 	ProbuilderVars.instantiated_obj=ProbuilderVars.objs[ProbuilderVars.selected_index].instantiate()
-	var Owner=collisionParent.get_parent()
+	var Owner=collisionParent
+	while Owner.name != "Main":
+		Owner=Owner.get_parent()
 	Owner.add_child(ProbuilderVars.instantiated_obj)
 	ProbuilderVars.instantiated_obj.name= "block"
 	
@@ -138,7 +141,7 @@ func spawn_prefab():
 	ProbuilderVars.instantiated_obj.owner=Owner
 	ProbuilderVars.instantiated_obj.set_owner(Owner)
 	ProbuilderVars.instantiated_obj.position=collisionPosition
-	
+
 	if ProbuilderVars.snap_objects:
 		collisionPosition=collisionPosition.snapped(ProbuilderVars.snapping_value)
 		ProbuilderVars.instantiated_obj.position=ProbuilderVars.instantiated_obj.position.snapped(ProbuilderVars.snapping_value)
@@ -180,9 +183,10 @@ func customRayCast(camera :Camera3D, pos:Vector2,event ):
 	var collision = space.intersect_ray(query)
 	
 	if collision: # RaycastHit
-		print(collision.position)	
+
 		#Set variables
 		if ProbuilderVars.raycast_ground:
+
 			if collision.collider.name == "Ground":
 				collisionParent=collision.collider
 				collisionPosition=collision.position
@@ -191,6 +195,7 @@ func customRayCast(camera :Camera3D, pos:Vector2,event ):
 				collisionPosition=Vector3(0,0,0)
 				ProbuilderVars.label_text="RANDOM POSITION POSSIBLE"
 		else: 
+
 			collisionParent=collision.collider
 			collisionPosition=collision.position
 		

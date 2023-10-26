@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Probuilder"
-run/main_scene="res://Showcase.tscn"
+run/main_scene="res://Scenes/Showcase.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ProbuilderVars="*res://ProbuilderVars.gd"
+ProbuilderVars="*res://Scripts/ProbuilderVars.gd"
 
 [editor_plugins]
 

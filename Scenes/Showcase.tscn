@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bu2enw0aawph3"]
 
-[ext_resource type="Script" path="res://Locker.gd" id="1_h42rf"]
+[ext_resource type="Script" path="res://Scripts/Locker.gd" id="1_r4fn4"]
 [ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_256vn"]
 [ext_resource type="PackedScene" uid="uid://df1ecyl26yxsq" path="res://Prefabs/Cube.tscn" id="3_l24no"]
 [ext_resource type="PackedScene" uid="uid://cu65ftqlrljj8" path="res://Prefabs/Door.tscn" id="4_t44gj"]
@@ -17,11 +17,11 @@ uv1_scale = Vector3(100, 100, 100)
 [sub_resource type="PlaneMesh" id="PlaneMesh_rkp4h"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_h42rf")
+script = ExtResource("1_r4fn4")
 
 [node name="Ground" type="Area3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
-script = ExtResource("1_h42rf")
+script = ExtResource("1_r4fn4")
 predefined_position = Vector3(0, -0.5, 0)
 predefined_scale = Vector3(100, 1, 100)
 metadata/_edit_group_ = true

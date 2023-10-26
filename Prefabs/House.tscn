@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx7ai8m34xjs5"]
+
+[ext_resource type="Texture2D" uid="uid://bg1qeib1rqabh" path="res://addons/KenneyPrototypeTex/green/texture_01.png" id="1_icfpw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu3fy"]
+albedo_texture = ExtResource("1_icfpw")
+
+[sub_resource type="PrismMesh" id="PrismMesh_hkkol"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_655g0"]
+albedo_texture = ExtResource("1_icfpw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dygj7"]
+
+[node name="House" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98593, 0)
+material_override = SubResource("StandardMaterial3D_xu3fy")
+mesh = SubResource("PrismMesh_hkkol")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_655g0")
+mesh = SubResource("BoxMesh_dygj7")

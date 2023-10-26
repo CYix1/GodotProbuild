@@ -26,29 +26,30 @@ layout_mode = 2
 
 [node name="ResetValuesBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Reset"
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Ground"
+text = "RANDOM POSITION POSSIBLE"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "currentState: ready to place"
+text = "currentState"
 
 [node name="Mode" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Tool Blocked? false "
+text = "Tool Blocked? true "
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
 max_value = 2.0
-step = 0.01
-value = 0.3
+step = 0.001
+value = 0.1
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "SC: 0.3"
+text = "scaling speed: 0.10000000038417"
 
 [node name="HSlider2" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
