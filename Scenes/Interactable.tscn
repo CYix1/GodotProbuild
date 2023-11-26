@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlv4lax5v1eo0"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable.gd" id="1_ucapf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ityhg"]
+
+[node name="Teleport" type="Node3D"]
+script = ExtResource("1_ucapf")
+teleport_position = Vector3(0, 0, 0)
+teleport_relative = null
+label_rotation = Vector3(0, 0, 0)
+collectable_string = "\"HEllo WOrld\""
+label_visibility = null
+
+[node name="StartPoint" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartPoint"]
+shape = SubResource("BoxShape3D_ityhg")
+
+[node name="TeleportPos" type="Node3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+billboard = 1
+text = "\"HEllo WOrld\""
+
+[connection signal="body_entered" from="StartPoint" to="." method="_on_start_point_body_entered"]
+[connection signal="body_exited" from="StartPoint" to="." method="_on_start_point_body_exited"]

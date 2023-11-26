@@ -1,24 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpejuau4yo7r1"]
+[gd_scene load_steps=3 format=3 uid="uid://dpejuau4yo7r1"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_prsj5"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/MatSet.gd" id="1_6rlfk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_cu65k"]
 height = 0.001
+radial_segments = 16
+rings = 8
+is_hemisphere = true
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_dhk3x"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_vpbc0"]
-
-[node name="Sphere" type="Area3D"]
+[node name="Sphere" type="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299854, 0)
+use_collision = true
+script = ExtResource("1_6rlfk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_prsj5")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("SphereShape3D_dhk3x")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.131, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("SphereShape3D_vpbc0")
+[node name="CSGSphere3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_cu65k")

@@ -9,21 +9,15 @@ func addLine(p1:Vector3 , p2:Vector3):
 
 func _ready():
 	points.clear()
-	points.append(ProbuilderVars.p1)
-	points.append(ProbuilderVars.p2)
 func _process(delta):
 	draw()
 	
 func draw():
+	return
 	mesh.clear_surfaces()
 	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 	
-	mesh.surface_add_vertex(ProbuilderVars.p1)
-	mesh.surface_add_vertex(ProbuilderVars.p2)
-	mesh.surface_add_vertex(ProbuilderVars.p1)
-	mesh.surface_add_vertex(ProbuilderVars.p1)
-	mesh.surface_add_vertex(ProbuilderVars.p2)
-	mesh.surface_add_vertex(ProbuilderVars.p2)
+
 		
 	mesh.surface_end()
 

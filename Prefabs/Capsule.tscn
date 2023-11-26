@@ -1,20 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c21kbltau4jk8"]
+[gd_scene load_steps=5 format=3 uid="uid://c21kbltau4jk8"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_p2c8c"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/MatSet.gd" id="1_jm0le"]
+[ext_resource type="Texture2D" uid="uid://gnj30ft0ua52" path="res://addons/KenneyPrototypeTex/purple/texture_01.png" id="2_h3sh1"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c0lg2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh8ly"]
+albedo_texture = ExtResource("2_h3sh1")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_echjo"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rb2xl"]
+radial_segments = 20
 
-[node name="Capsule" type="Area3D"]
+[node name="Capsule" type="CSGCombiner3D"]
+use_collision = true
+script = ExtResource("1_jm0le")
+m_material = SubResource("StandardMaterial3D_uh8ly")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_p2c8c")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("CapsuleShape3D_c0lg2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_echjo")
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_rb2xl")
+material = SubResource("StandardMaterial3D_uh8ly")

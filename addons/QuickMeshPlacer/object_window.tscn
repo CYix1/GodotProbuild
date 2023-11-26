@@ -26,12 +26,11 @@ layout_mode = 2
 
 [node name="ResetValuesBtn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-disabled = true
-text = "Reset"
+text = "State Output"
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "RANDOM POSITION POSSIBLE"
+text = "Moment"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -39,7 +38,7 @@ text = "currentState"
 
 [node name="Mode" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Tool Blocked? true "
+text = "Tool Blocked?true"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
@@ -49,7 +48,7 @@ value = 0.1
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "scaling speed: 0.10000000038417"
+text = "scaling speed: 0.3"
 
 [node name="HSlider2" type="HSlider" parent="VBoxContainer"]
 layout_mode = 2
@@ -58,36 +57,51 @@ value = 5.0
 
 [node name="Label4" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "snap value: "
+text = "snap value: (1, 1, 1)"
 
 [node name="BlockCheckBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "Block Tool"
 
 [node name="SnapCheckBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 text = "Snap Objects "
 
-[node name="AllAxisScale" type="CheckButton" parent="VBoxContainer"]
+[node name="AllAxisScaleBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
-button_pressed = true
 text = "All Axis scale"
 
-[node name="RayCastGroundBtn" type="CheckButton" parent="VBoxContainer"]
+[node name="RayCastBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 button_pressed = true
-text = "Raycast on Ground"
+text = "Raycast on ground"
 
-[node name="HeightFixBtn" type="CheckButton" parent="VBoxContainer"]
+[node name="FixHeightBtn" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
-button_pressed = true
-text = "fix Height?"
+text = "fix height"
+
+[node name="RandomPlcBtn" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "randomXZ placement"
+
+[node name="randomScaleBtn" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "scaling max: (1, 1, 1)"
 
 [connection signal="pressed" from="VBoxContainer/ResetValuesBtn" to="." method="_on_reset_values_btn_pressed"]
 [connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="toggled" from="VBoxContainer/BlockCheckBtn" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/SnapCheckBtn" to="." method="_on_snap_check_btn_toggled"]
-[connection signal="toggled" from="VBoxContainer/AllAxisScale" to="." method="_on_all_axis_scale_toggled"]
-[connection signal="toggled" from="VBoxContainer/RayCastGroundBtn" to="." method="_on_ray_cast_ground_btn_toggled"]
-[connection signal="toggled" from="VBoxContainer/HeightFixBtn" to="." method="_on_height_fix_btn_toggled"]
+[connection signal="toggled" from="VBoxContainer/AllAxisScaleBtn" to="." method="_on_all_axis_scale_toggled"]
+[connection signal="toggled" from="VBoxContainer/RayCastBtn" to="." method="_on_ray_cast_ground_btn_toggled"]
+[connection signal="toggled" from="VBoxContainer/FixHeightBtn" to="." method="_on_height_fix_btn_toggled"]
+[connection signal="toggled" from="VBoxContainer/RandomPlcBtn" to="." method="_on_random_plc_btn_toggled"]
+[connection signal="value_changed" from="VBoxContainer/randomScaleBtn" to="." method="_on_random_scale_btn_value_changed"]

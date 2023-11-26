@@ -1,22 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cu65ftqlrljj8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_naknm"]
-size = Vector3(1, 1.64678, 1.02689)
+[ext_resource type="Script" path="res://Prefabs/Scripts/MatSet.gd" id="1_u754r"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_in3jm"]
+radial_segments = 20
+rings = 4
 
-[node name="Door" type="Node3D"]
+[node name="Door" type="CSGCombiner3D"]
+script = ExtResource("1_u754r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_naknm")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(1, 1.5, 1)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-operation = 2
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-size = Vector3(1, 1.489, 1)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.78, 0, 0, 0, 0.97, 0, 0, 0, 1.53, -0.000626445, -0.403801, -0.000579119)
 operation = 2
 mesh = SubResource("CapsuleMesh_in3jm")

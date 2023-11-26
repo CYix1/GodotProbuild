@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://5cyq04gs3sbi"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/MatSet.gd" id="1_57a02"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D"]
+use_collision = true
+script = ExtResource("1_57a02")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132258, 0)
+operation = 2
+size = Vector3(0.8, 0.9, 0.8)

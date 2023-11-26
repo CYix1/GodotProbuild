@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl3xyes5f2evm"]
+
+[ext_resource type="Script" path="res://Scripts/ruler.gd" id="1_i1qjt"]
+
+[node name="ruler3" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.89025, -0.496763, -2)
+script = ExtResource("1_i1qjt")
+size = 1.0
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 1, 0.1, 1, 0.1, 0)
+depth = 0.1
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.25, 0.5, 0)
+pixel_size = 0.013
+text = "1M"

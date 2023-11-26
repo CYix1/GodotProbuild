@@ -1,24 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx7ai8m34xjs5"]
+[gd_scene load_steps=8 format=3 uid="uid://cx7ai8m34xjs5"]
 
+[ext_resource type="Script" path="res://Prefabs/Scripts/MatSet.gd" id="1_budw4"]
 [ext_resource type="Texture2D" uid="uid://bg1qeib1rqabh" path="res://addons/KenneyPrototypeTex/green/texture_01.png" id="1_icfpw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu3fy"]
 albedo_texture = ExtResource("1_icfpw")
 
-[sub_resource type="PrismMesh" id="PrismMesh_hkkol"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_655g0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnnat"]
 albedo_texture = ExtResource("1_icfpw")
 
-[sub_resource type="BoxMesh" id="BoxMesh_dygj7"]
+[sub_resource type="PrismMesh" id="PrismMesh_78ugy"]
+material = SubResource("StandardMaterial3D_pnnat")
 
-[node name="House" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g65ej"]
+albedo_texture = ExtResource("1_icfpw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_677wg"]
+albedo_texture = ExtResource("1_icfpw")
+
+[node name="House" type="CSGCombiner3D"]
+use_collision = true
+script = ExtResource("1_budw4")
+
+[node name="MeshInstance3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98593, 0)
 material_override = SubResource("StandardMaterial3D_xu3fy")
-mesh = SubResource("PrismMesh_hkkol")
+mesh = SubResource("PrismMesh_78ugy")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_655g0")
-mesh = SubResource("BoxMesh_dygj7")
+[node name="MeshInstance3D2" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_g65ej")
+material = SubResource("StandardMaterial3D_677wg")

@@ -39,7 +39,6 @@ mesh = SubResource("PlaneMesh_acvl1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.8773, 62.5504, 36.9791)
 mesh = SubResource("ImmediateMesh_4mrxo")
 script = ExtResource("3_l0qi0")
-points = [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 
 [node name="Node3D" type="Node3D" parent="MeshInstance3D"]
 
@@ -61,5 +60,5 @@ transform = Transform3D(13, 0, 0, 0, 8, 0, 0, 0, 14, 24.3236, -0.450001, -15.272
 [node name="block6" parent="." instance=ExtResource("5_iakw0")]
 transform = Transform3D(34, 0, 0, 0, 27.4607, 0, 0, 0, 14, -11.3745, -0.450001, -38.4366)
 
-[node name="block7" type="Node3D" parent="." instance=ExtResource("6_1cksd")]
+[node name="block7" parent="." instance=ExtResource("6_1cksd")]
 transform = Transform3D(19, 0, 0, 0, 41.0488, 0, 0, 0, 10, -28.9921, -0.450001, -2.45574)

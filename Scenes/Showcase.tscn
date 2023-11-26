@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu2enw0aawph3"]
+[gd_scene load_steps=14 format=3 uid="uid://bu2enw0aawph3"]
 
 [ext_resource type="Script" path="res://Scripts/Locker.gd" id="1_r4fn4"]
 [ext_resource type="Texture2D" uid="uid://dr7oa4v3s8we8" path="res://addons/KenneyPrototypeTex/dark/texture_03.png" id="2_256vn"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cu65ftqlrljj8" path="res://Prefabs/Door.tscn" id="4_t44gj"]
 [ext_resource type="PackedScene" uid="uid://c1uqamyiy6jgr" path="res://Prefabs/Cylinder.tscn" id="5_vt7i4"]
 [ext_resource type="PackedScene" uid="uid://ba53ioidbrfpf" path="res://Prefabs/StickyText.tscn" id="6_5gcmg"]
+[ext_resource type="PackedScene" uid="uid://c21kbltau4jk8" path="res://Prefabs/Capsule.tscn" id="7_xvief"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/MatSet.gd" id="8_r3eof"]
+[ext_resource type="Texture2D" uid="uid://gnj30ft0ua52" path="res://addons/KenneyPrototypeTex/purple/texture_01.png" id="9_yhpua"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hlp4v"]
 size = Vector3(2, 0.1, 2)
@@ -15,6 +18,9 @@ albedo_texture = ExtResource("2_256vn")
 uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rkp4h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh8ly"]
+albedo_texture = ExtResource("9_yhpua")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_r4fn4")
@@ -61,7 +67,7 @@ transform = Transform3D(31.1448, 0, 0, 0, 31.1448, 0, 0, 0, 31.1448, 83.803, 26.
 transform = Transform3D(31.1448, 0, 0, 0, 31.1448, 0, 0, 0, 31.1448, -89.572, 20.7413, -92.104)
 
 [node name="block10" parent="." instance=ExtResource("6_5gcmg")]
-transform = Transform3D(102.083, 0, 0, 0, 102.083, 0, 0, 0, 102.083, 0, 0, 0)
+transform = Transform3D(102.083, 0, 0, 0, 102.083, 0, 0, 0, 102.083, -0.557096, -7.581, 6.68557)
 text = "Garten"
 
 [node name="block11" parent="." instance=ExtResource("6_5gcmg")]
@@ -79,3 +85,27 @@ text = "Haupteingang"
 [node name="block14" parent="." instance=ExtResource("6_5gcmg")]
 transform = Transform3D(102.079, 0, 0.949622, 0, 102.083, 0, -0.949622, 0, 102.079, 67.236, 68.0074, 87.0534)
 text = "Notes: Metrics "
+
+[node name="block15" type="CSGCombiner3D" parent="." instance=ExtResource("7_xvief")]
+transform = Transform3D(0.932295, 0, -0.361699, 0, 1, 0, 0.361699, 0, 0.932295, 26.7315, 0.0499992, -8.7358)
+use_collision = true
+script = ExtResource("8_r3eof")
+m_material = SubResource("StandardMaterial3D_uh8ly")
+
+[node name="block16" type="CSGCombiner3D" parent="." instance=ExtResource("7_xvief")]
+transform = Transform3D(0.672104, 0, -0.740457, 0, 1, 0, 0.740457, 0, 0.672104, 21.894, 0.0499992, -27.3864)
+use_collision = true
+script = ExtResource("8_r3eof")
+m_material = SubResource("StandardMaterial3D_uh8ly")
+
+[node name="block17" type="CSGCombiner3D" parent="." instance=ExtResource("7_xvief")]
+transform = Transform3D(0.992073, 0, 0.125664, 0, 11.1701, 0, -0.125664, 0, 0.992073, 11.5897, 5.63506, -28.7246)
+use_collision = true
+script = ExtResource("8_r3eof")
+m_material = SubResource("StandardMaterial3D_uh8ly")
+
+[node name="block18" type="CSGCombiner3D" parent="." instance=ExtResource("7_xvief")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -37)
+use_collision = true
+script = ExtResource("8_r3eof")
+m_material = SubResource("StandardMaterial3D_uh8ly")

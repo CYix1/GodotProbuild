@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpfdpiqpadrwg"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/Bridge.gd" id="1_wojut"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k1j24"]
+size = Vector3(0.791106, 0.117715, 1)
+
+[node name="Bridge" type="CSGCombiner3D"]
+calculate_tangents = false
+use_collision = true
+script = ExtResource("1_wojut")
+new_walk_speed = 10
+new_run_speed = 15
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0.1, 0)
+operation = 2
+
+[node name="StaticBody3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.184796, 0)
+shape = SubResource("BoxShape3D_k1j24")
+
+[connection signal="body_entered" from="StaticBody3D" to="." method="_on_static_body_3d_body_entered"]
+[connection signal="body_exited" from="StaticBody3D" to="." method="_on_static_body_3d_body_exited"]

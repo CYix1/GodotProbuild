@@ -1,0 +1,251 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6laxw84d5tia"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/TempleGenerator.gd" id="1_tq0pc"]
+[ext_resource type="Material" uid="uid://dt8ybecqmew6u" path="res://Assets/Textures/unitTex/Ground.tres" id="2_2bkhn"]
+[ext_resource type="PackedScene" uid="uid://dlv4lax5v1eo0" path="res://Scenes/Interactable.tscn" id="3_p0gjr"]
+[ext_resource type="Material" uid="uid://dodac36etetq1" path="res://Assets/Textures/unitTex/blue.tres" id="3_sxml5"]
+[ext_resource type="Texture2D" uid="uid://dgosa1mx6vg4s" path="res://addons/KenneyPrototypeTex/orange/texture_11.png" id="4_bj1k3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u55y5"]
+albedo_texture = ExtResource("4_bj1k3")
+uv1_offset = Vector3(1, 1, 1)
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_clg60"]
+
+[node name="GenBuildingTest" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.9487, 0)
+calculate_tangents = false
+use_collision = true
+script = ExtResource("1_tq0pc")
+options = null
+
+[node name="Walls" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.549, 0)
+calculate_tangents = false
+
+[node name="Ground" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+calculate_tangents = false
+size = Vector3(29.5304, 1, 19.5523)
+material = ExtResource("2_2bkhn")
+
+[node name="option 1" type="CSGCombiner3D" parent="Walls/Ground"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Walls/Ground/option 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.47246, 0)
+calculate_tangents = false
+radius = 1.792
+height = 7.94277
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Walls/Ground/option 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4.472, 0)
+calculate_tangents = false
+radius = 1.792
+height = 7.943
+
+[node name="option 2" type="CSGCombiner3D" parent="Walls/Ground"]
+visible = false
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Walls/Ground/option 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0567031, 4.472, 0)
+calculate_tangents = false
+radius = 1.792
+height = 7.943
+
+[node name="Roof" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+material_override = ExtResource("3_sxml5")
+calculate_tangents = false
+size = Vector3(29.5304, 1, 19.5523)
+material = ExtResource("2_2bkhn")
+
+[node name="Left" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9, 3.5, 0)
+calculate_tangents = false
+size = Vector3(0.2, 10, 19.569)
+material = ExtResource("2_2bkhn")
+
+[node name="CSGSphere3D7" type="CSGCylinder3D" parent="Walls/Left"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, -1, 0)
+operation = 2
+radius = 2.0
+sides = 4
+smooth_faces = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/Left/CSGSphere3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(0.2, 4, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls/Left/CSGSphere3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 1)
+
+[node name="Right" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9, 3.5, 0)
+calculate_tangents = false
+size = Vector3(0.2, 10, 20)
+material = ExtResource("2_2bkhn")
+
+[node name="CSGSphere3D7" type="CSGCylinder3D" parent="Walls/Right"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, -1, 0)
+operation = 2
+radius = 2.0
+sides = 4
+smooth_faces = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/Right/CSGSphere3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(0.2, 4, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls/Right/CSGSphere3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 1)
+
+[node name="Back" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -9.9)
+calculate_tangents = false
+size = Vector3(30, 10, 0.2)
+material = ExtResource("2_2bkhn")
+
+[node name="CSGSphere3D" type="CSGCylinder3D" parent="Walls/Back"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 9, -1, 0.108482)
+operation = 2
+radius = 2.0
+sides = 4
+smooth_faces = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/Back/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(0.2, 4, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls/Back/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGSphere3D3" type="CSGCylinder3D" parent="Walls/Back"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -9, -1, 0.108482)
+operation = 2
+radius = 2.0
+sides = 4
+smooth_faces = false
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Walls/Back/CSGSphere3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(0.2, 4, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Walls/Back/CSGSphere3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 1)
+
+[node name="Front" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 9.9)
+calculate_tangents = false
+size = Vector3(30, 10, 0.2)
+material = ExtResource("2_2bkhn")
+
+[node name="CSGSphere3D4" type="CSGCylinder3D" parent="Walls/Front"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 8, -1, -0.553475)
+operation = 2
+radius = 2.0
+sides = 4
+smooth_faces = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/Front/CSGSphere3D4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(0.2, 4, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls/Front/CSGSphere3D4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGSphere3D6" type="CSGCylinder3D" parent="Walls/Front"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -8, -1, 0)
+operation = 2
+radius = 2.0
+sides = 4
+smooth_faces = false
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Walls/Front/CSGSphere3D6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(0.2, 4, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Walls/Front/CSGSphere3D6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+operation = 2
+size = Vector3(4, 0.2, 1)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, -0.069, -19, -0.013)
+use_collision = true
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(1.1, 0, 0, 0, 0.8, 0, 0, 0, 0.765, 0, 12, 0)
+calculate_tangents = false
+flip_faces = true
+polygon = PackedVector2Array(25, 0.396, 20, 3.45, -20, 3.617, -25, 0.385, -13, 1.183, 13, 1.182)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+smooth_faces = true
+material = ExtResource("2_2bkhn")
+
+[node name="Roof2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.5784, 0)
+operation = 2
+size = Vector3(30, 3, 20)
+
+[node name="StairDown" parent="." instance=ExtResource("3_p0gjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1388, -10.4885, 7.14167)
+collider_size = Vector3(5, 5, 5)
+teleport_position = Vector3(-18, 10, 4)
+teleport_relative = true
+teleportPoint = NodePath("Node3D")
+collectable_string = "GO DOWN"
+label_offset = Vector3(0, 0, -2.695)
+editor = true
+label_visibility = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StairDown"]
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_u55y5")
+
+[node name="Node3D" type="Node3D" parent="StairDown"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.23, -10, -9.187)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairDown/Node3D"]
+mesh = SubResource("BoxMesh_clg60")
+
+[node name="StairUp" parent="." instance=ExtResource("3_p0gjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1649, -10.3343, 7.28349)
+collider_size = Vector3(5, 5, 5)
+teleport_position = Vector3(18, 10, 4)
+teleport_relative = true
+teleportPoint = NodePath("Node3D2")
+collectable_string = "GO UP"
+label_offset = Vector3(0.32, -0.01, -2.335)
+editor = true
+label_visibility = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StairUp"]
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_u55y5")
+
+[node name="Node3D2" type="Node3D" parent="StairUp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9697, 7.40401, -9.51172)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StairUp/Node3D2"]
+mesh = SubResource("BoxMesh_clg60")

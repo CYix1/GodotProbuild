@@ -8,61 +8,41 @@ var selected_index=0
 var instantiated_obj=null
 var p1:Vector3
 var p2:Vector3
-#events if specific values are changed I hop
-signal on_block(new_value)
-var block=false:
-	get:
-		return block
-	set(value):
-		on_block.emit(value)
-		block = value
-		
-signal on_snap_objects(new_value)
-var snap_objects=false:
-	get:
-		return snap_objects
-	set(value):
-		
-		on_snap_objects.emit(value)
-		snap_objects = value
-		
 
-signal on_all_axis_scale(new_value)
-var all_axis_scale=false:
-	get:
-		return all_axis_scale
-	set(value):
-		on_all_axis_scale.emit(value)
-		all_axis_scale = value
+#events if specific values are changed I hope
+var block=CustomDataType.new(true)
+var snap_objects=CustomDataType.new(false)
+var all_axis_scale=CustomDataType.new(false)
+var raycast_ground=CustomDataType.new(true)
+var height_fix_after_placement= CustomDataType.new(false)
+var randomXZ= CustomDataType.new(false)
 
-signal on_raycast_ground(new_value)
-var raycast_ground=true:
-	get:
-		return raycast_ground
-	set(value):
-		on_raycast_ground.emit(value)
-		raycast_ground = value
-		
+var randomScaleMax= CustomDataType.new(1.0)
+var scaling_factor_factor= CustomDataType.new(0.3)
+
+var snapping_value=CustomDataType.new(Vector3.ONE)
 
 var mouse_position = Vector2()
 var z_depth=1000
 var position_3D= Vector3()
-var scaling_factor_factor=1
-var objs=[preload("res://Prefabs/Capsule.tscn"),
+var objs=[
+	#preload("res://Prefabs/Bridge.tscn"),
+	preload("res://Prefabs/Capsule.tscn"),
 preload("res://Prefabs/Circle.tscn"),
 preload("res://Prefabs/Cube.tscn"),
 preload("res://Prefabs/Cylinder.tscn"),
 preload("res://Prefabs/Door.tscn"),
-preload("res://Prefabs/HollowCube.tscn"),
+#preload("res://Prefabs/HollowCube.tscn"),
 preload("res://Prefabs/House.tscn"),
 preload("res://Prefabs/Plane.tscn"),
 preload("res://Prefabs/Slope.tscn"),
 preload("res://Prefabs/Sphere.tscn"),
-preload("res://Prefabs/StickyText.tscn"),
+#preload("res://Prefabs/StickyText.tscn"),
+
+preload("res://Prefabs/TempleBase.tscn"),
+preload("res://Prefabs/Tree.tscn")
 
 ]
-var snapping_value=Vector3(0,0,0)
-var height_fix_after_placement= CustomDataType.new()
 
 class CustomDataType:
 	signal on_value_change(new_value)
@@ -72,6 +52,26 @@ class CustomDataType:
 		set(value):
 			on_value_change.emit(value)
 			data = value
+	func _init(v):
+		data=v
+
+func print_state():
+	print("label_text:",label_text)
+	print("state_text:",state_text)
+	print("selected_index:",selected_index)
+	print("instantiated_obj:",label_text)
+	print("p1:",p1)
+	print("p2:",p2)
+	print("block:",block.data)
+	print("snap_objects:",snap_objects.data)
+	print("all_axis_scale:",all_axis_scale.data)
+	print("raycast_ground:",raycast_ground.data)
+	print("scaling_factor_factor:",scaling_factor_factor.data)
+	print("snap_value:",snapping_value.data)
+	print("fix_height:",height_fix_after_placement.data)	
+	print("randomXZ:",randomXZ.data)
+	print("randomScaleMax",randomScaleMax.data)
+	
 #NOT USED
 var current_scene = null
 

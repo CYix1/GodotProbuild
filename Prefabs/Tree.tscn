@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctcn4f4yoll7g"]
+
+[ext_resource type="Material" uid="uid://crdviqxjmo83f" path="res://Assets/Textures/ErdeKaiju.tres" id="1_oebbp"]
+[ext_resource type="Texture2D" uid="uid://dkpqh8de7tb3n" path="res://Assets/Textures/Green.png" id="2_pw4kt"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8ikco"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ipman"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v00bt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxn4s"]
+albedo_texture = ExtResource("2_pw4kt")
+
+[sub_resource type="SphereMesh" id="SphereMesh_w8u4e"]
+
+[node name="Tree" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = ExtResource("1_oebbp")
+mesh = SubResource("CylinderMesh_8ikco")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_ipman")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.985319, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("SphereShape3D_v00bt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+material_override = SubResource("StandardMaterial3D_hxn4s")
+mesh = SubResource("SphereMesh_w8u4e")
